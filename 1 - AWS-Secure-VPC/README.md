@@ -42,4 +42,4 @@
 - **Full Portfolio**: [CloudSec-Portfolio](https://github.com/yourusername/CloudSec-Portfolio)
 
 **Fork/Star & Deploy! #AWSSecurity** ⭐
-*Week 1 SCS Prep | Last Update: [Date]*
+*Week 1 SCS Prep | Last Update: March 23, 2026*
