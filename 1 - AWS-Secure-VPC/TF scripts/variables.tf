@@ -54,12 +54,6 @@ variable "key_name" {
   default     = "my-key-pair"
 }
 
-variable "aws_region" {
-  description = "AWS region for resources"
-  type        = string
-  default     = "us-east-1"
-}
-
 variable "private_instance_type" {
   description = "EC2 instance type for private instances"
   type        = string
