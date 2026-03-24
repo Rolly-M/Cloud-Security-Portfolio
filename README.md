@@ -97,13 +97,13 @@
 ## 🤝 Contact & Job Opportunities
 - 📧 Email: rollymk25@gmail.com
 - 💼 LinkedIn: [linkedin.com/in/rolly-mougoue](https://www.linkedin.com/in/rolly-mougoue/)
-- 📄 Resume: [Download PDF](resume.pdf)
+- 📄 Resume: [Download PDF]("Resume - Security Analyst (2).pdf")
 
 **Open to Cloud Security Engineer opportunities | AWS/Azure Focus | France/EU Remote.**
 
 ## 📈 Contributions & Stars
-[![GitHub stars](https://img.shields.io/github/stars/rolly-mougoue/CloudSec-Portfolio?style=social)](https://github.com/rolly-mougoue/CloudSec-Portfolio/stargazers/)
-[![GitHub forks](https://img.shields.io/github/forks/rolly-mougoue/CloudSec-Portfolio?style=social)](https://github.com/rolly-mougoue/CloudSec-Portfolio/network/members/)
+[![GitHub stars](https://img.shields.io/github/stars/Rolly-M/CloudSec-Portfolio?style=social)](https://github.com/Rolly-M/CloudSec-Portfolio/stargazers/)
+[![GitHub forks](https://img.shields.io/github/forks/Rolly-M/CloudSec-Portfolio?style=social)](https://github.com/Rolly-M/CloudSec-Portfolio/network/members/)
 
 **Thanks for the ⭐! Share your forked lab on LinkedIn #CloudSecurity**
 
