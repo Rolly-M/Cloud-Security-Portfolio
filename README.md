@@ -1,22 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 1000px; margin: 0 auto; padding: 20px; background: linear-gradient(135deg, #232F3E 0%, #1a365d 100%); color: #fff; }
-        .header { text-align: center; background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin-bottom: 30px; }
-        h1, h2, h3 { color: #fff; border-bottom: 2px solid #FF9900; padding-bottom: 10px; }
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: rgba(255,255,255,0.1); }
-        th, td { padding: 12px; text-align: left; border: 1px solid #FF9900; }
-        th { background: #FF9900; color: #000; }
-        a { color: #FF9900; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .badge { margin: 5px; }
-        .demo-gif { max-width: 100%; border-radius: 10px; }
-        .skills { background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; }
-    </style>
-</head>
-<body>
-
 # 🚀 Cloud Security Engineer Portfolio
 
 [![AWS Certified Solutions Architect](https://img.shields.io/badge/AWS%20Solutions%20Architect-Associate-orange?style=for-the-badge&logo=amazon-aws)](https://www.credly.com/badges/33105d15-a047-4119-a4e0-1a145bae0381/public_url)
