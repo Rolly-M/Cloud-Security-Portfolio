@@ -44,3 +44,13 @@ availability_zones = [
   "us-east-1b",
   "us-east-1c"
 ]
+
+# ==================================================================
+# VARIABLES FOR LAB 2 - GuardDuty + Threat simulation and remdiation
+# ==================================================================
+
+# GuardDuty Lab Configuration
+enable_guardduty       = true
+guardduty_alert_email  = "your-email@example.com"
+slack_webhook_url      = ""  # Add your Slack webhook if you have one
+enable_threat_simulation = true

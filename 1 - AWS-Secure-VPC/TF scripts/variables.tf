@@ -103,3 +103,41 @@ variable "disk_alarm_threshold" {
   type        = number
   default     = 80
 }
+
+
+# ==================================================================
+# VARIABLES FOR LAB 2 - GuardDuty + Threat simulation and remdiation
+# ==================================================================
+
+
+# GuardDuty Lab Variables
+variable "enable_guardduty" {
+  description = "Enable AWS GuardDuty"
+  type        = bool
+  default     = true
+}
+
+variable "guardduty_alert_email" {
+  description = "Email for GuardDuty security alerts"
+  type        = string
+  default     = "security@example.com"
+}
+
+variable "slack_webhook_url" {
+  description = "Slack webhook URL for security alerts (optional)"
+  type        = string
+  default     = ""
+  sensitive   = true
+}
+
+variable "enable_threat_simulation" {
+  description = "Enable threat simulation resources for testing"
+  type        = bool
+  default     = true
+}
+
+variable "quarantine_sg_name" {
+  description = "Name of the quarantine security group"
+  type        = string
+  default     = "quarantine-sg"
+}
