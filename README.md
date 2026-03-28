@@ -39,7 +39,7 @@
 
 ## 📂 All Repositories (14+ Hands-On Labs)
 1. **[AWS-Secure-VPC](https://github.com/Rolly-M/CLoud-Security-Portfolio/tree/main/1%20-%20AWS-Secure-VPC)** : CIS VPC Baseline + NACL/Flow Logs.
-2. **[AWS-GuardDuty-Lab](AWS-GuardDuty-Lab)** : Threat Simulation + Lambda Remediation.
+2. **[AWS-GuardDuty-Lab](https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/2%20-%20AWS_Guard_Duty)** : Threat Simulation + Lambda Remediation.
 3. **[AWS-Inspector-NSG](AWS-Inspector-NSG)** : Vulnerability Scans + Azure Hybrid.
 4. **[AWS-WAF-Terraform](AWS-WAF-Terraform)** : SQLi/XSS Blocking.
 5. **[AWS-Macie-KMS](AWS-Macie-KMS)** : PII Classification on S3.
