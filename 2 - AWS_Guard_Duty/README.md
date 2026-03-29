@@ -38,7 +38,6 @@ This project implements a **production-ready AWS security solution** that combin
 │   ├── dns_exfiltration.py
 │   └── guardduty_tester.py
 ├── README.md
-└── linkedin_post.md
 
 ## 🔐 Security Features
 
