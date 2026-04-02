@@ -88,7 +88,7 @@ This project implements a **production-ready AWS security solution** that combin
 git clone https://github.com/Rolly-M/Cloud-Security-Portfolio.git
 cd "Cloud-Security-Portfolio/2 - AWS_Guard_Duty"
 ```
-2. Edit the `terraform/terraform.tfvars` to configure the deploymment variables. Make sure to define the VPC ID from project 1 if you want to deploy in the same VPC. Edit Lambda environment variables to enable/disable specific actions
+2. Edit the `terraform/terraform.tfvars` to configure the deploymment variables. Make sure to define the VPC ID from project 1 if you want to deploy in the same VPC.
 
 3. Deploy the infrastructure
 
