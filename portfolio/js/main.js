@@ -86,3 +86,48 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+// ── Modal open / close ──────────────────────────────────────
+function openModal(id) {
+  const overlay = document.getElementById(id);
+  if (!overlay) return;
+  overlay.style.display = 'flex';
+  requestAnimationFrame(() => overlay.classList.add('open'));
+  document.body.style.overflow = 'hidden';
+  // Focus the close button for accessibility
+  const closeBtn = overlay.querySelector('.modal-close');
+  if (closeBtn) closeBtn.focus();
+}
+
+function closeModal(id) {
+  const overlay = document.getElementById(id);
+  if (!overlay) return;
+  overlay.classList.remove('open');
+  overlay.addEventListener('transitionend', () => {
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }, { once: true });
+}
+
+// Close on backdrop click
+document.querySelectorAll('.modal-overlay').forEach(modal => {
+  modal.addEventListener('click', e => {
+    if (e.target === modal) closeModal(modal.id);
+  });
+});
+
+// Close on Escape key
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    const openModalEl = document.querySelector('.modal-overlay.open');
+    if (openModalEl) closeModal(openModalEl.id);
+  }
+});
+
+// Wire up all close buttons (.modal-close header button and .modal-close-btn footer button)
+document.querySelectorAll('.modal-close, .modal-close-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const modal = btn.closest('.modal-overlay');
+    if (modal) closeModal(modal.id);
+  });
+});

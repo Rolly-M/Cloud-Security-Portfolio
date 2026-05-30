@@ -37,8 +37,10 @@
   <!-- ── HERO ───────────────────────────────────────────── -->
   <section id="hero" class="hero" aria-label="Introduction">
     <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
     <div class="container hero-content">
-      <div class="hero-badge">Open to Cloud Security roles · EU / Remote</div>
+      <div class="hero-badge">Open to Cloud Security roles · Alberta, CA or Remote EU</div>
       <h1 class="hero-name">Rolly Mougoue</h1>
       <h2 class="hero-title">Cloud Security Engineer</h2>
       <p class="hero-tagline">
@@ -246,6 +248,13 @@
               <span class="cost-label">Key technique</span>
               <span class="cost-value" style="font-size:12px; color: var(--blue);">moto AWS mocking</span>
             </div>
+            <button class="btn btn-diag" onclick="openModal('modal-gd')">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/><path d="M17.5 14v6m-3-3h6"/>
+              </svg>
+              View Architecture
+            </button>
             <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/2%20-%20AWS_Guard_Duty"
                target="_blank" rel="noopener noreferrer"
                class="btn btn-outline" style="width:100%; justify-content:center;">
@@ -284,9 +293,18 @@
           </div>
           <div class="project-footer">
             <span class="test-count">Infrastructure validated</span>
-            <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/1%20-%20AWS-Secure-VPC"
-               target="_blank" rel="noopener noreferrer"
-               class="project-link">View project</a>
+            <div class="project-footer-actions">
+              <button class="btn btn-diag" onclick="openModal('modal-vpc')">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                  <rect x="3" y="14" width="7" height="7" rx="1"/><path d="M17.5 14v6m-3-3h6"/>
+                </svg>
+                View Architecture
+              </button>
+              <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/1%20-%20AWS-Secure-VPC"
+                 target="_blank" rel="noopener noreferrer"
+                 class="project-link">View project</a>
+            </div>
           </div>
         </article>
 
@@ -320,9 +338,18 @@
           </div>
           <div class="project-footer">
             <span class="test-count">33 rule-logic tests</span>
-            <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/4%20-%20AWS_WAF"
-               target="_blank" rel="noopener noreferrer"
-               class="project-link">View project</a>
+            <div class="project-footer-actions">
+              <button class="btn btn-diag" onclick="openModal('modal-waf')">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                  <rect x="3" y="14" width="7" height="7" rx="1"/><path d="M17.5 14v6m-3-3h6"/>
+                </svg>
+                View Architecture
+              </button>
+              <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/4%20-%20AWS_WAF"
+                 target="_blank" rel="noopener noreferrer"
+                 class="project-link">View project</a>
+            </div>
           </div>
         </article>
 
@@ -358,9 +385,18 @@
           </div>
           <div class="project-footer">
             <span class="test-count">27 unit tests</span>
-            <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/3%20-%20AWS_Inspector"
-               target="_blank" rel="noopener noreferrer"
-               class="project-link">View project</a>
+            <div class="project-footer-actions">
+              <button class="btn btn-diag" onclick="openModal('modal-insp')">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                  <rect x="3" y="14" width="7" height="7" rx="1"/><path d="M17.5 14v6m-3-3h6"/>
+                </svg>
+                View Architecture
+              </button>
+              <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/3%20-%20AWS_Inspector"
+                 target="_blank" rel="noopener noreferrer"
+                 class="project-link">View project</a>
+            </div>
           </div>
         </article>
 
@@ -396,9 +432,18 @@
           </div>
           <div class="project-footer">
             <span class="test-count">36 unit tests</span>
-            <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/5%20-%20AWS_Macie_KMS"
-               target="_blank" rel="noopener noreferrer"
-               class="project-link">View project</a>
+            <div class="project-footer-actions">
+              <button class="btn btn-diag" onclick="openModal('modal-macie')">
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                  <rect x="3" y="14" width="7" height="7" rx="1"/><path d="M17.5 14v6m-3-3h6"/>
+                </svg>
+                View Architecture
+              </button>
+              <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/5%20-%20AWS_Macie_KMS"
+                 target="_blank" rel="noopener noreferrer"
+                 class="project-link">View project</a>
+            </div>
           </div>
         </article>
 
@@ -495,8 +540,7 @@
           <span class="section-label">Get in touch</span>
           <h2 class="section-title">Let's talk security</h2>
           <p class="section-desc">
-            Looking for Cloud Security Engineer roles focused on AWS.
-            Open to EU-based and remote opportunities.
+            Available for roles in Alberta, Canada, or remote across Canada and the EU.
           </p>
         </div>
 
@@ -546,6 +590,672 @@
       </ul>
     </div>
   </footer>
+
+  <!-- ══════════════════════════════════════════════════════
+       MODALS
+       ══════════════════════════════════════════════════════ -->
+
+  <!-- MODAL 1 — Secure VPC -->
+  <div class="modal-overlay" id="modal-vpc" role="dialog" aria-modal="true" aria-label="Secure VPC architecture">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-num">01</span>
+          <h2 class="modal-title">AWS Secure VPC</h2>
+        </div>
+        <button class="modal-close" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="modal-diagram">
+        <svg viewBox="0 0 840 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Secure VPC architecture diagram">
+          <defs>
+            <marker id="arr-P1" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#4361ee"/>
+            </marker>
+          </defs>
+          <rect width="840" height="300" fill="#060c1a" rx="12"/>
+          <!-- VPC boundary -->
+          <rect x="80" y="35" width="440" height="170" rx="8" fill="none" stroke="#8C4FFF" stroke-width="1" stroke-dasharray="6,4" opacity="0.4"/>
+          <text x="90" y="30" fill="#8C4FFF" font-size="11" opacity="0.6" font-family="monospace">VPC</text>
+
+          <!-- Internet circle -->
+          <circle cx="40" cy="90" r="28" fill="#22d3ee" fill-opacity="0.15" stroke="#22d3ee" stroke-width="1.5"/>
+          <text x="40" y="130" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">Internet</text>
+
+          <!-- IGW -->
+          <g transform="translate(100, 50)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#8C4FFF" fill-opacity="0.15" stroke="#8C4FFF" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/NetworkingContentDelivery/AmazonVPC.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">IGW</text>
+          </g>
+
+          <!-- Bastion EC2 -->
+          <g transform="translate(260, 50)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#FF9900" fill-opacity="0.15" stroke="#FF9900" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/Compute/AmazonEC2.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">Bastion</text>
+          </g>
+
+          <!-- App EC2 -->
+          <g transform="translate(420, 50)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#FF9900" fill-opacity="0.15" stroke="#FF9900" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/Compute/AmazonEC2.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">EC2</text>
+          </g>
+
+          <!-- VPC Flow Logs -->
+          <g transform="translate(260, 175)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#FF4F8B" fill-opacity="0.15" stroke="#FF4F8B" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/ManagementGovernance/AmazonCloudWatch.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">Flow Logs</text>
+          </g>
+
+          <!-- CloudWatch -->
+          <g transform="translate(420, 175)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#FF4F8B" fill-opacity="0.15" stroke="#FF4F8B" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/ManagementGovernance/AmazonCloudWatch.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">CloudWatch</text>
+          </g>
+
+          <!-- SNS -->
+          <g transform="translate(580, 175)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#E7157B" fill-opacity="0.15" stroke="#E7157B" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/ApplicationIntegration/AmazonSNS.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">SNS</text>
+          </g>
+
+          <!-- Arrows -->
+          <!-- Internet to IGW -->
+          <line x1="68" y1="90" x2="100" y2="90" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P1)" stroke-linecap="round"/>
+          <!-- IGW to Bastion -->
+          <line x1="180" y1="90" x2="260" y2="90" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P1)" stroke-linecap="round"/>
+          <!-- Bastion to App EC2 -->
+          <line x1="340" y1="90" x2="420" y2="90" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P1)" stroke-linecap="round"/>
+          <!-- Bastion down to Flow Logs -->
+          <line x1="300" y1="130" x2="300" y2="175" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P1)" stroke-linecap="round"/>
+          <!-- Flow Logs to CloudWatch -->
+          <line x1="340" y1="215" x2="420" y2="215" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P1)" stroke-linecap="round"/>
+          <!-- CloudWatch to SNS -->
+          <line x1="500" y1="215" x2="580" y2="215" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P1)" stroke-linecap="round"/>
+
+          <!-- Labels -->
+          <text x="385" y="82" text-anchor="middle" fill="#4d5a7a" font-size="10" font-family="monospace">SSH Agent Forwarding</text>
+          <text x="318" y="155" fill="#4d5a7a" font-size="10" font-family="monospace">VPC Flow Logs</text>
+        </svg>
+      </div>
+      <div class="modal-content">
+        <div class="modal-desc">
+          <h3>How it works</h3>
+          <p>A production-hardened multi-AZ VPC provides the secure network foundation for all other projects. Public subnets host the Bastion EC2 and Internet Gateway, while private subnets hold application EC2 instances. All traffic between subnets is governed by stateless NACLs and stateful Security Groups.</p>
+          <p>VPC Flow Logs capture accepted and rejected traffic separately, feeding into CloudWatch metric filters that detect SSH brute-force attempts and port-scan patterns. SNS alerts trigger immediately when anomalous thresholds are breached.</p>
+          <ul class="modal-highlights">
+            <li>Dual-layer firewall: stateless NACLs + stateful Security Group referencing (no broad 0.0.0.0/0 ingress)</li>
+            <li>VPC Flow Logs split into accepted/rejected streams — faster CloudWatch Insights queries</li>
+            <li>CloudWatch metric filters with SSH brute-force alarm: &gt;5 failed attempts / 5 min</li>
+            <li>Bastion with SSH agent forwarding — private key never touches the Bastion disk</li>
+            <li>All resources tagged with environment, owner, and cost-centre for audit compliance</li>
+            <li>Terraform remote state in S3 with DynamoDB locking — safe for team use</li>
+          </ul>
+        </div>
+        <div class="modal-meta">
+          <div class="cost-badge">
+            <span class="cost-label">Monthly cost (demo)</span>
+            <span class="cost-value">~$3 / mo</span>
+          </div>
+          <div class="cost-badge">
+            <span class="cost-label">Validation</span>
+            <span class="cost-value" style="font-size:13px;">Infrastructure validated</span>
+          </div>
+          <div style="margin-top:16px;">
+            <div class="modal-meta-label">Tech stack</div>
+            <div class="project-tags" style="margin-top:8px;">
+              <span class="tag tag-aws">VPC</span>
+              <span class="tag tag-aws">EC2</span>
+              <span class="tag tag-aws">CloudWatch</span>
+              <span class="tag tag-aws">SNS</span>
+              <span class="tag tag-aws">Flow Logs</span>
+              <span class="tag tag-iac">Terraform</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/1%20-%20AWS-Secure-VPC" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub</a>
+        <button class="btn btn-ghost modal-close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2 — GuardDuty -->
+  <div class="modal-overlay" id="modal-gd" role="dialog" aria-modal="true" aria-label="GuardDuty architecture">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-num">02</span>
+          <h2 class="modal-title">GuardDuty Threat Detection &amp; Auto-Remediation</h2>
+        </div>
+        <button class="modal-close" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="modal-diagram">
+        <svg viewBox="0 0 840 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GuardDuty auto-remediation pipeline diagram">
+          <defs>
+            <marker id="arr-P2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#4361ee"/>
+            </marker>
+          </defs>
+          <rect width="840" height="310" fill="#060c1a" rx="12"/>
+
+          <!-- Row 1 nodes -->
+          <!-- GuardDuty -->
+          <g transform="translate(30, 30)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#DD344C" fill-opacity="0.15" stroke="#DD344C" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/SecurityIdentityCompliance/AmazonGuardDuty.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">GuardDuty</text>
+          </g>
+
+          <!-- EventBridge -->
+          <g transform="translate(220, 30)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#E7157B" fill-opacity="0.15" stroke="#E7157B" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/ApplicationIntegration/AmazonEventBridge.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">EventBridge</text>
+          </g>
+
+          <!-- Lambda -->
+          <g transform="translate(410, 30)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#FF9900" fill-opacity="0.15" stroke="#FF9900" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/Compute/AWSLambdaFunction.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">Lambda</text>
+          </g>
+
+          <!-- Row 2 nodes -->
+          <!-- EC2 Isolate -->
+          <g transform="translate(30, 185)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#FF9900" fill-opacity="0.15" stroke="#FF9900" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/Compute/AmazonEC2.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">EC2 Isolate</text>
+          </g>
+
+          <!-- IAM Revoke -->
+          <g transform="translate(195, 185)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#DD344C" fill-opacity="0.15" stroke="#DD344C" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/SecurityIdentityCompliance/AWSIAM.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">IAM Revoke</text>
+          </g>
+
+          <!-- S3 Snapshot -->
+          <g transform="translate(360, 185)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#7AA116" fill-opacity="0.15" stroke="#7AA116" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/Storage/AmazonSimpleStorageService.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">S3 Snapshot</text>
+          </g>
+
+          <!-- SNS Alert -->
+          <g transform="translate(525, 185)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#E7157B" fill-opacity="0.15" stroke="#E7157B" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/ApplicationIntegration/AmazonSNS.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">SNS Alert</text>
+          </g>
+
+          <!-- Slack webhook box -->
+          <rect x="680" y="195" width="80" height="36" rx="6" fill="#4361ee" fill-opacity="0.12" stroke="#4361ee" stroke-opacity="0.35" stroke-width="1"/>
+          <text x="720" y="213" text-anchor="middle" fill="#7b8db0" font-size="10" font-family="monospace">Slack</text>
+          <text x="720" y="225" text-anchor="middle" fill="#7b8db0" font-size="10" font-family="monospace">Webhook</text>
+
+          <!-- Row 1 arrows -->
+          <line x1="110" y1="70" x2="220" y2="70" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P2)" stroke-linecap="round"/>
+          <line x1="300" y1="70" x2="410" y2="70" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P2)" stroke-linecap="round"/>
+
+          <!-- Severity filter label -->
+          <text x="355" y="62" text-anchor="middle" fill="#34d399" font-size="10" font-family="monospace">Severity &gt; 7.0</text>
+
+          <!-- Lambda vertical stem -->
+          <line x1="450" y1="110" x2="450" y2="170" stroke="#4361ee" stroke-width="2" stroke-linecap="round"/>
+          <!-- Horizontal bus -->
+          <line x1="70" y1="170" x2="700" y2="170" stroke="#4361ee" stroke-width="2" stroke-linecap="round"/>
+          <!-- Drop lines to row 2 nodes -->
+          <line x1="70" y1="170" x2="70" y2="185" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P2)" stroke-linecap="round"/>
+          <line x1="235" y1="170" x2="235" y2="185" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P2)" stroke-linecap="round"/>
+          <line x1="400" y1="170" x2="400" y2="185" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P2)" stroke-linecap="round"/>
+          <line x1="565" y1="170" x2="565" y2="185" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P2)" stroke-linecap="round"/>
+          <line x1="700" y1="170" x2="700" y2="195" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P2)" stroke-linecap="round"/>
+
+          <!-- Annotation labels -->
+          <text x="70" y="292" text-anchor="middle" fill="#4d5a7a" font-size="10" font-family="monospace">Isolate SG</text>
+          <text x="235" y="292" text-anchor="middle" fill="#4d5a7a" font-size="10" font-family="monospace">Disable Key</text>
+          <text x="400" y="292" text-anchor="middle" fill="#4d5a7a" font-size="10" font-family="monospace">Forensic EBS</text>
+          <text x="565" y="292" text-anchor="middle" fill="#4d5a7a" font-size="10" font-family="monospace">SNS + Slack</text>
+        </svg>
+      </div>
+      <div class="modal-content">
+        <div class="modal-desc">
+          <h3>How it works</h3>
+          <p>When GuardDuty raises a finding, EventBridge routes it to a Lambda remediation function. An EventBridge rule filters findings with severity above 7.0 to avoid alert fatigue, forwarding only HIGH and CRITICAL findings. The Lambda then fans out to four parallel remediation actions.</p>
+          <p>Each action is individually toggled via environment variable feature flags, so teams can enable only what their runbook approves. All actions are idempotent and designed to run safely if triggered twice.</p>
+          <ul class="modal-highlights">
+            <li>EC2 quarantine: replaces all instance security groups with a zero-ingress/zero-egress isolation SG</li>
+            <li>IAM credential revocation: disables access key and attaches an inline DenyAll policy to the role</li>
+            <li>Forensic EBS snapshot created for all attached volumes before any destructive action</li>
+            <li>Severity filter on EventBridge rule: only severity &gt; 7.0 triggers Lambda (configurable)</li>
+            <li>Dual-channel alerting: SNS topic (email/PagerDuty) + Slack webhook with structured finding JSON</li>
+            <li>73 pytest + moto unit tests covering all severity bands, feature flags, and error paths</li>
+          </ul>
+        </div>
+        <div class="modal-meta">
+          <div class="cost-badge">
+            <span class="cost-label">Monthly cost (demo)</span>
+            <span class="cost-value">~$2 / mo</span>
+          </div>
+          <div class="cost-badge">
+            <span class="cost-label">Test coverage</span>
+            <span class="cost-value">73 passing</span>
+          </div>
+          <div style="margin-top:16px;">
+            <div class="modal-meta-label">Tech stack</div>
+            <div class="project-tags" style="margin-top:8px;">
+              <span class="tag tag-aws">GuardDuty</span>
+              <span class="tag tag-aws">EventBridge</span>
+              <span class="tag tag-aws">Lambda</span>
+              <span class="tag tag-aws">EC2</span>
+              <span class="tag tag-aws">IAM</span>
+              <span class="tag tag-aws">S3</span>
+              <span class="tag tag-aws">SNS</span>
+              <span class="tag tag-iac">Terraform</span>
+              <span class="tag tag-lang">Python 3.11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/2%20-%20AWS_Guard_Duty" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub</a>
+        <button class="btn btn-ghost modal-close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3 — Inspector -->
+  <div class="modal-overlay" id="modal-insp" role="dialog" aria-modal="true" aria-label="Inspector v2 architecture">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-num">03</span>
+          <h2 class="modal-title">AWS Inspector v2 — CVE Scanning</h2>
+        </div>
+        <button class="modal-close" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="modal-diagram">
+        <svg viewBox="0 0 840 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Inspector v2 CVE scanning pipeline diagram">
+          <defs>
+            <marker id="arr-P3" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#4361ee"/>
+            </marker>
+          </defs>
+          <rect width="840" height="300" fill="#060c1a" rx="12"/>
+
+          <!-- Row 1 nodes -->
+          <!-- EC2 + SSM -->
+          <g transform="translate(30, 50)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#FF9900" fill-opacity="0.15" stroke="#FF9900" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/Compute/AmazonEC2.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">EC2 + SSM</text>
+          </g>
+
+          <!-- Inspector v2 -->
+          <g transform="translate(210, 50)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#DD344C" fill-opacity="0.15" stroke="#DD344C" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/SecurityIdentityCompliance/AmazonInspector.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">Inspector v2</text>
+          </g>
+
+          <!-- EventBridge -->
+          <g transform="translate(390, 50)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#E7157B" fill-opacity="0.15" stroke="#E7157B" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/ApplicationIntegration/AmazonEventBridge.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">EventBridge</text>
+          </g>
+
+          <!-- Lambda -->
+          <g transform="translate(570, 50)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#FF9900" fill-opacity="0.15" stroke="#FF9900" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/Compute/AWSLambdaFunction.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">Lambda</text>
+          </g>
+
+          <!-- Row 2 nodes -->
+          <!-- Tag EC2 -->
+          <g transform="translate(490, 185)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#FF9900" fill-opacity="0.15" stroke="#FF9900" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/Compute/AmazonEC2.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">Tag EC2</text>
+          </g>
+
+          <!-- SNS Alert -->
+          <g transform="translate(650, 185)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#E7157B" fill-opacity="0.15" stroke="#E7157B" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/ApplicationIntegration/AmazonSNS.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">SNS</text>
+          </g>
+
+          <!-- Row 1 arrows -->
+          <line x1="110" y1="90" x2="210" y2="90" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P3)" stroke-linecap="round"/>
+          <line x1="290" y1="90" x2="390" y2="90" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P3)" stroke-linecap="round"/>
+          <line x1="470" y1="90" x2="570" y2="90" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P3)" stroke-linecap="round"/>
+
+          <!-- Label on EC2 to Inspector arrow -->
+          <text x="250" y="82" text-anchor="middle" fill="#34d399" font-size="10" font-family="monospace">via SSM Agent</text>
+
+          <!-- Lambda split down -->
+          <line x1="610" y1="130" x2="610" y2="175" stroke="#4361ee" stroke-width="2" stroke-linecap="round"/>
+          <!-- Horizontal to Tag EC2 and SNS -->
+          <line x1="530" y1="175" x2="690" y2="175" stroke="#4361ee" stroke-width="2" stroke-linecap="round"/>
+          <line x1="530" y1="175" x2="530" y2="185" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P3)" stroke-linecap="round"/>
+          <line x1="690" y1="175" x2="690" y2="185" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P3)" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="modal-content">
+        <div class="modal-desc">
+          <h3>How it works</h3>
+          <p>Inspector v2 continuously scans EC2 instances via the SSM Agent — no open inbound ports required. Findings are streamed to EventBridge, which filters HIGH and CRITICAL severity CVEs and triggers a Lambda remediation function.</p>
+          <p>The Lambda tags the affected EC2 instance with structured metadata (severity band, CVE ID, finding type, CVSS score, last-scanned timestamp) and publishes an SNS alert to the operations team. All five severity bands are mapped, and the max CVSS score is extracted from multiple scoring vectors per finding.</p>
+          <ul class="modal-highlights">
+            <li>Zero open ports: Inspector v2 uses SSM Agent for agent-based scanning (no network exposure)</li>
+            <li>EC2 instance tagging: severity, CVE-ID, finding-type, CVSS score, last-scanned ISO timestamp</li>
+            <li>Severity band mapping across all 5 tiers: CRITICAL, HIGH, MEDIUM, LOW, INFORMATIONAL</li>
+            <li>Max CVSS score extracted from all available scoring vectors per finding</li>
+            <li>SNS alert with structured finding payload for PagerDuty or email delivery</li>
+            <li>27 pytest + moto unit tests: all severity bands, missing fields, and pagination edge-cases</li>
+          </ul>
+        </div>
+        <div class="modal-meta">
+          <div class="cost-badge">
+            <span class="cost-label">Monthly cost (demo)</span>
+            <span class="cost-value">~$2 / mo</span>
+          </div>
+          <div class="cost-badge">
+            <span class="cost-label">Test coverage</span>
+            <span class="cost-value">27 passing</span>
+          </div>
+          <div style="margin-top:16px;">
+            <div class="modal-meta-label">Tech stack</div>
+            <div class="project-tags" style="margin-top:8px;">
+              <span class="tag tag-aws">Inspector v2</span>
+              <span class="tag tag-aws">SSM</span>
+              <span class="tag tag-aws">EventBridge</span>
+              <span class="tag tag-aws">Lambda</span>
+              <span class="tag tag-aws">SNS</span>
+              <span class="tag tag-iac">Terraform</span>
+              <span class="tag tag-lang">Python 3.11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/3%20-%20AWS_Inspector" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub</a>
+        <button class="btn btn-ghost modal-close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 4 — WAF -->
+  <div class="modal-overlay" id="modal-waf" role="dialog" aria-modal="true" aria-label="WAF architecture">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-num">04</span>
+          <h2 class="modal-title">AWS WAF — Web Application Firewall</h2>
+        </div>
+        <button class="modal-close" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="modal-diagram">
+        <svg viewBox="0 0 840 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WAFv2 API Gateway protection diagram">
+          <defs>
+            <marker id="arr-P4" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#4361ee"/>
+            </marker>
+          </defs>
+          <rect width="840" height="300" fill="#060c1a" rx="12"/>
+
+          <!-- Internet circle -->
+          <circle cx="45" cy="100" r="28" fill="#22d3ee" fill-opacity="0.15" stroke="#22d3ee" stroke-width="1.5"/>
+          <text x="45" y="140" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">Internet</text>
+
+          <!-- WAFv2 -->
+          <g transform="translate(105, 60)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#DD344C" fill-opacity="0.15" stroke="#DD344C" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/SecurityIdentityCompliance/AWSWAF.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">WAFv2</text>
+          </g>
+
+          <!-- WAF rule annotations -->
+          <g opacity="0.7">
+            <rect x="200" y="62" width="90" height="18" rx="4" fill="#DD344C" fill-opacity="0.2" stroke="#DD344C" stroke-width="0.5"/>
+            <text x="245" y="75" text-anchor="middle" fill="#f87171" font-size="9" font-family="monospace">OWASP Core</text>
+            <rect x="200" y="84" width="90" height="18" rx="4" fill="#DD344C" fill-opacity="0.2" stroke="#DD344C" stroke-width="0.5"/>
+            <text x="245" y="97" text-anchor="middle" fill="#f87171" font-size="9" font-family="monospace">SQLi</text>
+            <rect x="200" y="106" width="90" height="18" rx="4" fill="#DD344C" fill-opacity="0.2" stroke="#DD344C" stroke-width="0.5"/>
+            <text x="245" y="119" text-anchor="middle" fill="#f87171" font-size="9" font-family="monospace">Known Bad</text>
+            <rect x="200" y="128" width="90" height="18" rx="4" fill="#DD344C" fill-opacity="0.2" stroke="#DD344C" stroke-width="0.5"/>
+            <text x="245" y="141" text-anchor="middle" fill="#f87171" font-size="9" font-family="monospace">Rate Limit</text>
+            <rect x="200" y="150" width="90" height="18" rx="4" fill="#DD344C" fill-opacity="0.2" stroke="#DD344C" stroke-width="0.5"/>
+            <text x="245" y="163" text-anchor="middle" fill="#f87171" font-size="9" font-family="monospace">IP Blocklist</text>
+          </g>
+
+          <!-- API Gateway -->
+          <g transform="translate(310, 60)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#8C4FFF" fill-opacity="0.15" stroke="#8C4FFF" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/NetworkingContentDelivery/AmazonAPIGateway.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">API Gateway</text>
+          </g>
+
+          <!-- Lambda -->
+          <g transform="translate(510, 60)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#FF9900" fill-opacity="0.15" stroke="#FF9900" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/Compute/AWSLambdaFunction.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">Lambda</text>
+          </g>
+
+          <!-- CloudWatch -->
+          <g transform="translate(105, 190)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#FF4F8B" fill-opacity="0.15" stroke="#FF4F8B" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/ManagementGovernance/AmazonCloudWatch.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">CloudWatch Logs</text>
+          </g>
+
+          <!-- Arrows -->
+          <line x1="73" y1="100" x2="105" y2="100" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P4)" stroke-linecap="round"/>
+          <line x1="185" y1="100" x2="310" y2="100" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P4)" stroke-linecap="round"/>
+          <line x1="390" y1="100" x2="510" y2="100" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P4)" stroke-linecap="round"/>
+          <!-- WAF down to CloudWatch -->
+          <line x1="145" y1="140" x2="145" y2="190" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P4)" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="modal-content">
+        <div class="modal-desc">
+          <h3>How it works</h3>
+          <p>WAFv2 sits in front of an API Gateway HTTP API, inspecting all inbound requests against five managed and custom rule groups. Requests that match threat patterns are blocked before they reach application code. All blocked and allowed requests are logged to CloudWatch for analysis and dashboarding.</p>
+          <p>API Gateway was chosen over an ALB specifically to avoid the ~$18/month fixed ALB cost at demo volumes — the WAFv2 capability is identical. WAF logs go directly to CloudWatch (avoiding Kinesis Firehose's ~$10/mo baseline at low volume).</p>
+          <ul class="modal-highlights">
+            <li>AWSManagedRulesCommonRuleSet (OWASP core): blocks common web attack vectors</li>
+            <li>AWSManagedRulesSQLiRuleSet: SQL injection pattern detection and blocking</li>
+            <li>AWSManagedRulesKnownBadInputsRuleSet: blocks Log4Shell, SSRF, and shellcode patterns</li>
+            <li>Rate-based rule: 2,000 requests per 5-minute window per source IP</li>
+            <li>Custom IP set blocklist: operator-managed, updated without redeployment via Terraform variable</li>
+            <li>33 pytest unit tests: all rule groups, rate logic, IP set operations, and CloudWatch metric filters</li>
+          </ul>
+        </div>
+        <div class="modal-meta">
+          <div class="cost-badge">
+            <span class="cost-label">Monthly cost (demo)</span>
+            <span class="cost-value">~$6 / mo</span>
+          </div>
+          <div class="cost-badge">
+            <span class="cost-label">Test coverage</span>
+            <span class="cost-value">33 passing</span>
+          </div>
+          <div style="margin-top:16px;">
+            <div class="modal-meta-label">Tech stack</div>
+            <div class="project-tags" style="margin-top:8px;">
+              <span class="tag tag-aws">WAFv2</span>
+              <span class="tag tag-aws">API Gateway</span>
+              <span class="tag tag-aws">Lambda</span>
+              <span class="tag tag-aws">CloudWatch</span>
+              <span class="tag tag-iac">Terraform</span>
+              <span class="tag tag-lang">Python 3.11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/4%20-%20AWS_WAF" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub</a>
+        <button class="btn btn-ghost modal-close-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 5 — Macie + KMS -->
+  <div class="modal-overlay" id="modal-macie" role="dialog" aria-modal="true" aria-label="Macie and KMS architecture">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-row">
+          <span class="modal-num">05</span>
+          <h2 class="modal-title">AWS Macie + KMS — PII Classification</h2>
+        </div>
+        <button class="modal-close" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="modal-diagram">
+        <svg viewBox="0 0 840 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Macie PII classification and KMS encryption diagram">
+          <defs>
+            <marker id="arr-P5" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#4361ee"/>
+            </marker>
+            <marker id="arr-green-P5" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+              <polygon points="0 0, 8 3, 0 6" fill="#34d399"/>
+            </marker>
+          </defs>
+          <rect width="840" height="310" fill="#060c1a" rx="12"/>
+
+          <!-- Row 1 nodes -->
+          <!-- S3 Sensitive -->
+          <g transform="translate(30, 30)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#7AA116" fill-opacity="0.15" stroke="#7AA116" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/Storage/AmazonSimpleStorageService.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">S3 Sensitive</text>
+          </g>
+
+          <!-- Macie v2 -->
+          <g transform="translate(205, 30)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#1A9C3E" fill-opacity="0.15" stroke="#1A9C3E" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/SecurityIdentityCompliance/AmazonMacie.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">Macie v2</text>
+          </g>
+
+          <!-- Custom identifier annotation -->
+          <text x="245" y="120" text-anchor="middle" fill="#4d5a7a" font-size="9" font-family="monospace">Custom Identifiers:</text>
+          <text x="245" y="132" text-anchor="middle" fill="#4d5a7a" font-size="9" font-family="monospace">AWS account#, Employee IDs</text>
+
+          <!-- EventBridge -->
+          <g transform="translate(380, 30)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#E7157B" fill-opacity="0.15" stroke="#E7157B" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/ApplicationIntegration/AmazonEventBridge.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">EventBridge</text>
+          </g>
+
+          <!-- Lambda -->
+          <g transform="translate(555, 30)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#FF9900" fill-opacity="0.15" stroke="#FF9900" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/Compute/AWSLambdaFunction.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">Lambda</text>
+          </g>
+
+          <!-- Row 2 nodes -->
+          <!-- S3 Quarantine -->
+          <g transform="translate(425, 165)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#7AA116" fill-opacity="0.15" stroke="#7AA116" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/Storage/AmazonSimpleStorageService.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">S3 Quarantine</text>
+          </g>
+
+          <!-- SNS Alert -->
+          <g transform="translate(600, 165)" class="svc-node">
+            <rect width="80" height="80" rx="12" fill="#E7157B" fill-opacity="0.15" stroke="#E7157B" stroke-opacity="0.4" stroke-width="1.5"/>
+            <image href="https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist/ApplicationIntegration/AmazonSNS.png" x="10" y="8" width="60" height="60"/>
+            <text x="40" y="100" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">SNS Alert</text>
+          </g>
+
+          <!-- KMS CMK box -->
+          <rect x="30" y="248" width="80" height="44" rx="8" fill="#DD344C" fill-opacity="0.15" stroke="#DD344C" stroke-opacity="0.4" stroke-width="1.5"/>
+          <text x="70" y="268" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">KMS</text>
+          <text x="70" y="283" text-anchor="middle" fill="#7b8db0" font-size="11" font-family="monospace">CMK</text>
+
+          <!-- Row 1 arrows -->
+          <line x1="110" y1="70" x2="205" y2="70" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P5)" stroke-linecap="round"/>
+          <line x1="285" y1="70" x2="380" y2="70" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P5)" stroke-linecap="round"/>
+          <line x1="460" y1="70" x2="555" y2="70" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P5)" stroke-linecap="round"/>
+
+          <!-- Lambda split to row 2 -->
+          <line x1="595" y1="110" x2="595" y2="157" stroke="#4361ee" stroke-width="2" stroke-linecap="round"/>
+          <line x1="465" y1="157" x2="640" y2="157" stroke="#4361ee" stroke-width="2" stroke-linecap="round"/>
+          <line x1="465" y1="157" x2="465" y2="165" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P5)" stroke-linecap="round"/>
+          <line x1="640" y1="157" x2="640" y2="165" stroke="#4361ee" stroke-width="2" marker-end="url(#arr-P5)" stroke-linecap="round"/>
+
+          <!-- KMS dashed line to S3 Sensitive -->
+          <line x1="110" y1="270" x2="70" y2="110" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arr-green-P5)" stroke-linecap="round"/>
+
+          <!-- KMS label -->
+          <text x="420" y="300" text-anchor="middle" fill="#4d5a7a" font-size="10" font-family="monospace">Customer-Managed Key · Auto-rotation enabled</text>
+        </svg>
+      </div>
+      <div class="modal-content">
+        <div class="modal-desc">
+          <h3>How it works</h3>
+          <p>Macie v2 runs weekly scheduled classification jobs against the sensitive S3 bucket, using both AWS managed identifiers and two custom identifier patterns (AWS account numbers, internal employee ID format). Findings are routed through EventBridge to a Lambda that performs the quarantine action.</p>
+          <p>The Lambda copies flagged objects to an isolated quarantine bucket, deletes the original, and tags the copy with finding metadata (severity, finding type, Macie job ID). A single KMS Customer-Managed Key with annual auto-rotation encrypts all buckets — reducing cost from $4/mo to $1/mo versus per-bucket keys.</p>
+          <ul class="modal-highlights">
+            <li>Weekly scheduled scans instead of continuous monitoring — ~10x cheaper at demo-scale S3 volumes</li>
+            <li>Custom Macie identifiers: regex patterns for AWS account numbers and employee ID format</li>
+            <li>Quarantine action: copy → tag with finding metadata → delete original (idempotent)</li>
+            <li>Single rotating KMS CMK for all buckets: $1/mo vs $4/mo for four separate keys</li>
+            <li>Quarantine bucket blocks all public access and enforces KMS encryption at rest</li>
+            <li>36 pytest + moto tests covering all finding severities, quarantine logic, and KMS key rotation</li>
+          </ul>
+        </div>
+        <div class="modal-meta">
+          <div class="cost-badge">
+            <span class="cost-label">Monthly cost (demo)</span>
+            <span class="cost-value">~$3 / mo</span>
+          </div>
+          <div class="cost-badge">
+            <span class="cost-label">Test coverage</span>
+            <span class="cost-value">36 passing</span>
+          </div>
+          <div style="margin-top:16px;">
+            <div class="modal-meta-label">Tech stack</div>
+            <div class="project-tags" style="margin-top:8px;">
+              <span class="tag tag-aws">Macie v2</span>
+              <span class="tag tag-aws">KMS</span>
+              <span class="tag tag-aws">S3</span>
+              <span class="tag tag-aws">Lambda</span>
+              <span class="tag tag-aws">EventBridge</span>
+              <span class="tag tag-iac">Terraform</span>
+              <span class="tag tag-lang">Python 3.11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/5%20-%20AWS_Macie_KMS" target="_blank" rel="noopener" class="btn btn-primary">View on GitHub</a>
+        <button class="btn btn-ghost modal-close-btn">Close</button>
+      </div>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
