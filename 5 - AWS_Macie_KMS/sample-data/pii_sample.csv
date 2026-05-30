@@ -1,0 +1,4 @@
+employee_id,first_name,last_name,ssn,email,phone,credit_card,aws_account
+EMP-001234,John,Smith,123-45-6789,john.smith@example.com,555-0100,4111111111111111,123456789012
+EMP-001235,Jane,Doe,234-56-7890,jane.doe@example.com,555-0101,5500005555555559,234567890123
+EMP-001236,Bob,Johnson,345-67-8901,bob.j@example.com,555-0102,340000000000009,345678901234

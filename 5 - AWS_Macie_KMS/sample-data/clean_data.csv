@@ -1,0 +1,4 @@
+product_id,product_name,category,price,stock
+P001,Widget Alpha,Electronics,29.99,150
+P002,Widget Beta,Electronics,49.99,75
+P003,Gadget Gamma,Tools,19.99,200
