@@ -1,0 +1,104 @@
+{
+  "ec2_finding": {
+    "version": "0",
+    "id": "test-event-id-001",
+    "source": "aws.guardduty",
+    "account": "123456789012",
+    "region": "us-east-1",
+    "detail": {
+      "id": "finding-id-ec2-001",
+      "type": "UnauthorizedAccess:EC2/SSHBruteForce",
+      "severity": 8.0,
+      "title": "EC2 instance is performing SSH brute force attacks",
+      "description": "EC2 instance i-1234567890abcdef0 is performing SSH brute force attacks against 1.2.3.4.",
+      "accountId": "123456789012",
+      "createdAt": "2024-01-15T10:00:00Z",
+      "updatedAt": "2024-01-15T10:05:00Z",
+      "resource": {
+        "resourceType": "Instance",
+        "instanceDetails": {
+          "instanceId": "i-1234567890abcdef0",
+          "instanceType": "t2.micro"
+        }
+      },
+      "service": {
+        "action": {
+          "networkConnectionAction": {
+            "remoteIpDetails": {
+              "ipAddressV4": "1.2.3.4"
+            }
+          }
+        }
+      }
+    }
+  },
+  "iam_finding": {
+    "version": "0",
+    "id": "test-event-id-002",
+    "source": "aws.guardduty",
+    "account": "123456789012",
+    "region": "us-east-1",
+    "detail": {
+      "id": "finding-id-iam-001",
+      "type": "UnauthorizedAccess:IAMUser/ConsoleLoginSuccess.B",
+      "severity": 7.5,
+      "title": "Unusual console login detected",
+      "description": "An unusual console login by IAM user test-user was observed.",
+      "accountId": "123456789012",
+      "createdAt": "2024-01-15T10:00:00Z",
+      "updatedAt": "2024-01-15T10:05:00Z",
+      "resource": {
+        "resourceType": "AccessKey",
+        "accessKeyDetails": {
+          "userName": "test-user",
+          "accessKeyId": "AKIAIOSFODNN7EXAMPLE"
+        }
+      },
+      "service": {}
+    }
+  },
+  "s3_finding": {
+    "version": "0",
+    "id": "test-event-id-003",
+    "source": "aws.guardduty",
+    "account": "123456789012",
+    "region": "us-east-1",
+    "detail": {
+      "id": "finding-id-s3-001",
+      "type": "Discovery:S3/MaliciousIPCaller",
+      "severity": 5.0,
+      "title": "S3 bucket accessed from malicious IP",
+      "description": "An S3 bucket was accessed from a known malicious IP address.",
+      "accountId": "123456789012",
+      "createdAt": "2024-01-15T10:00:00Z",
+      "updatedAt": "2024-01-15T10:05:00Z",
+      "resource": {
+        "resourceType": "S3Bucket",
+        "s3BucketDetails": [
+          {"name": "my-sensitive-bucket"},
+          {"name": "another-bucket"}
+        ]
+      },
+      "service": {}
+    }
+  },
+  "low_severity_finding": {
+    "version": "0",
+    "id": "test-event-id-004",
+    "source": "aws.guardduty",
+    "account": "123456789012",
+    "region": "us-east-1",
+    "detail": {
+      "id": "finding-id-low-001",
+      "type": "Recon:EC2/PortProbeUnprotectedPort",
+      "severity": 2.0,
+      "title": "Unprotected port probed",
+      "description": "EC2 instance has an unprotected port that has been probed.",
+      "accountId": "123456789012",
+      "createdAt": "2024-01-15T10:00:00Z",
+      "updatedAt": "2024-01-15T10:05:00Z",
+      "resource": {},
+      "service": {}
+    }
+  }
+}

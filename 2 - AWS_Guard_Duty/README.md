@@ -1,164 +1,207 @@
-# AWS GuardDuty - Threat Simulation & Auto-Remediation
+# Project 2 — GuardDuty Threat Detection & Auto-Remediation
 
+[![AWS GuardDuty](https://img.shields.io/badge/AWS-GuardDuty-FF9900?style=flat-square&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/guardduty/)
+[![Terraform](https://img.shields.io/badge/Terraform-≥1.0-7B42BC?style=flat-square&logo=terraform&logoColor=white)](https://www.terraform.io/)
+[![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Tests](https://img.shields.io/badge/tests-73_passing-brightgreen?style=flat-square&logo=pytest&logoColor=white)](#running-tests)
 
-[![AWS](https://img.shields.io/badge/AWS-GuardDuty-orange?style=flat&logo=amazon-aws)](https://aws.amazon.com/guardduty/)
-[![Terraform](https://img.shields.io/badge/Terraform-1.0+-purple?style=flat&logo=terraform)](https://www.terraform.io/)
-[![Python](https://img.shields.io/badge/Python-3.11-blue?style=flat&logo=python)](https://www.python.org/)
-[![Security](https://img.shields.io/badge/Security-Automated-green?style=flat&logo=shield)](/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+An end-to-end AWS security response pipeline: GuardDuty detects a threat, EventBridge routes the finding to Lambda, and Lambda executes containment — all without human intervention. The entire remediation function is unit-tested with moto so the logic can be validated in CI without touching a real AWS account.
 
-## 🎯 Project Overview
+---
 
-This project implements a **production-ready AWS security solution** that combines threat detection with automated incident response. Building on the secure VPC infrastructure from Project 1, this solution provides:
+## What It Does
 
-- **Real-time threat detection** using AWS GuardDuty
-- **Automated remediation** via Lambda functions
-- **Instant alerting** through SNS and Slack
-- **Event-driven architecture** with EventBridge
-- **Forensic capabilities** for incident investigation
+```
+GuardDuty Finding
+      │
+      ▼
+EventBridge Rule  ──────────────────────────────────────────────────────┐
+      │                                                                  │
+      ▼                                                                  │
+Lambda (remediation_handler.py)                                         │
+      │                                                                  │
+      ├─── EC2 finding? ──► Create forensic EBS snapshot                │
+      │                     Replace security groups with quarantine SG  │
+      │                                                                  │
+      ├─── IAM finding? ──► Disable access key                          │
+      │                     Attach deny-all inline policy               │
+      │                                                                  │
+      ├─── S3 finding?  ──► Log for review                              │
+      │                                                                  │
+      ├─── Malicious IP? ─► Log for WAF integration                     │
+      │                                                                  │
+      └─── Always ───────► SNS + Slack notification                     │
+                            Store finding JSON in S3 (KMS-encrypted)   ◄┘
+```
 
-## Project Structue
+### Remediation Details
 
+**EC2 Compromise** (e.g. `UnauthorizedAccess:EC2/SSHBruteForce`, `CryptoCurrency:EC2/BitcoinTool`)
+- Snapshots all EBS volumes before touching the instance, tagging each with the finding ID and severity for the forensics team
+- Replaces all security groups with a quarantine SG (zero ingress/egress), tagging the instance with its original SGs so recovery is reversible
+- Controlled by `SNAPSHOT_INSTANCE` and `ISOLATE_EC2` feature flags
+
+**IAM Credential Theft** (e.g. `UnauthorizedAccess:IAMUser/ConsoleLoginSuccess.B`)
+- Calls `update_access_key(Status=Inactive)` on the compromised key
+- Attaches a deny-all inline policy (`GuardDuty-Quarantine-DenyAll`) to prevent any further actions regardless of other policies
+- Controlled by `DISABLE_IAM_CREDENTIALS` feature flag
+
+**Severity Gating**
+All remediation is gated by `SEVERITY_THRESHOLD` (default 7.0). Findings below the threshold receive a notification but no automated action. `ENABLE_AUTO_REMEDIATION=false` disables all automated actions globally while keeping notifications on.
+
+---
+
+## Project Structure
+
+```
 2 - AWS_Guard_Duty/
 ├── terraform/
-│   ├── main.tf
+│   ├── main.tf              # Provider config, KMS key, random suffix
+│   ├── guardduty.tf         # Detector, S3 findings export, trusted/malicious IP sets
+│   ├── eventbridge.tf       # Rule routing findings to Lambda
+│   ├── lambda.tf            # Function, environment variables, log group
+│   ├── iam.tf               # Least-privilege execution role
+│   ├── sns.tf               # Alert topic + email subscription
 │   ├── variables.tf
 │   ├── outputs.tf
-│   ├── guardduty.tf
-│   ├── sns.tf
-│   ├── eventbridge.tf
-│   ├── lambda.tf
-│   ├── iam.tf
 │   └── data.tf
 ├── lambda/
-│   ├── remediation_handler.py
+│   ├── remediation_handler.py   # Lambda function (14 functions, fully tested)
 │   └── requirements.txt
 ├── threat-simulation/
-│   ├── simulate_threats.sh
-│   ├── dns_exfiltration.py
-│   └── guardduty_tester.py
-├── README.md
+│   ├── guardduty_tester.py      # GuardDuty finding generator + remediation verifier
+│   ├── dns_exfiltration.py      # DNS-based exfiltration simulator
+│   └── simulate_threats.sh      # Shell wrapper for common test scenarios
+└── README.md
+```
 
-## 🔐 Security Features
+---
 
-### Threat Detection
+## Infrastructure
 
-| Threat Category | Finding Types | Auto-Remediation |
-|-----------------|---------------|------------------|
-| **EC2 Compromise** | CryptoCurrency, Backdoor, Trojan | ✅ Isolate + Snapshot |
-| **IAM Credential Theft** | Credential Exfiltration, Anomalous Behavior | ✅ Disable Keys + Deny Policy |
-| **S3 Data Exfiltration** | Malicious IP Caller, Unusual Access | ⚠️ Alert + Log |
-| **Network Attacks** | Port Probe, SSH/RDP Brute Force | ✅ Block IP |
-| **Malware** | Malware Protection Findings | ✅ Isolate + Snapshot |
+Deployed via Terraform. Key resources:
 
-### Automated Response Actions
+| Resource | Purpose |
+|---|---|
+| `aws_guardduty_detector` | Enables GuardDuty with S3, Kubernetes, and malware protection |
+| `aws_s3_bucket` (findings) | KMS-encrypted storage for finding exports; lifecycle transitions to Glacier at 90 days |
+| `aws_guardduty_ipset` | Trusted IP allowlist (RFC1918 ranges) |
+| `aws_guardduty_threatintelset` | Malicious IP feed for testing |
+| `aws_cloudwatch_event_rule` | Routes HIGH severity findings to Lambda |
+| `aws_lambda_function` | Python 3.11 remediation handler |
+| `aws_sns_topic` | Email + Slack alerting |
+| `aws_kms_key` | Encrypts findings bucket, SNS topic, and CloudWatch logs |
 
-1. **EC2 Instance Isolation**
-   - Replace security groups with quarantine SG (no ingress/egress)
-   - Tag instance with quarantine metadata
-   - Preserve original security group info for recovery
+---
 
-2. **Forensic Snapshot Creation**
-   - Automatic EBS volume snapshots before isolation
-   - Tagged with finding details for investigation
-   - Encrypted with KMS
-
-3. **IAM Credential Revocation**
-   - Disable compromised access keys
-   - Attach deny-all inline policy
-   - Preserve audit trail
-
-4. **IP Blocking**
-   - Log malicious IPs for WAF integration
-   - Support for automated WAF IP set updates
-
-
-## 🚀 Deployment Guide
+## Deployment
 
 ### Prerequisites
+- Terraform ≥ 1.0
+- AWS CLI configured (`aws configure`)
+- An SNS-subscribed email address for alerts
 
-- AWS CLI configured with appropriate credentials
-- Terraform >= 1.0.0
-- Python 3.11+
-- Project 1 VPC infrastructure deployed (optional but recommended)
-
-1. Clone the Repository
+### Steps
 
 ```bash
 git clone https://github.com/Rolly-M/Cloud-Security-Portfolio.git
-cd "Cloud-Security-Portfolio/2 - AWS_Guard_Duty"
-```
-2. Edit the `terraform/terraform.tfvars` to configure the deploymment variables. Make sure to define the VPC ID from project 1 if you want to deploy in the same VPC.
+cd "Cloud-Security-Portfolio/2 - AWS_Guard_Duty/terraform"
 
-3. Deploy the infrastructure
-
-```bash
-cd terraform
-
-# Initialize Terraform
 terraform init
-
-# Preview changes
-terraform plan
-
-# Deploy
-terraform apply
+terraform plan -var="alert_email=you@example.com"
+terraform apply -var="alert_email=you@example.com"
 ```
 
-After deployment, check your email and confirm the SNS subscription to receive alerts.
+Confirm the SNS email subscription when prompted. Outputs include the Lambda function name and findings bucket ARN.
 
-4. Test the solution:
+To deploy in the same VPC as Project 1, set `vpc_id` in `terraform.tfvars`.
+
+### Environment Variables (Lambda)
+
+| Variable | Default | Description |
+|---|---|---|
+| `SEVERITY_THRESHOLD` | `7.0` | Minimum severity to trigger remediation |
+| `ENABLE_AUTO_REMEDIATION` | `true` | Master kill-switch for automated actions |
+| `ISOLATE_EC2` | `true` | Replace instance security groups with quarantine SG |
+| `SNAPSHOT_INSTANCE` | `true` | Create forensic EBS snapshots |
+| `DISABLE_IAM_CREDENTIALS` | `true` | Disable keys + attach deny policy |
+| `QUARANTINE_SG_ID` | — | Security group ID with no ingress/egress |
+| `FINDINGS_BUCKET` | — | S3 bucket for finding JSON storage |
+| `SNS_TOPIC_ARN` | — | SNS topic for email alerts |
+| `SLACK_WEBHOOK_URL` | — | Slack incoming webhook URL |
+
+---
+
+## Running Tests
+
+No AWS credentials needed — all calls are intercepted by [moto](https://github.com/getmoto/moto).
 
 ```bash
-cd ../threat-simulation
-
-# Make scripts executable
-chmod +x simulate_threats.sh
-
-# Run threat simulation
-./simulate_threats.sh
-
-# Or use Python tester
-python3 guardduty_tester.py --action generate --category ec2_crypto
+pip install -r requirements-dev.txt
+python -m pytest tests/ -q
 ```
+
+```
+73 passed in 18s
+```
+
+Test coverage includes:
+- All 5 remediation paths (EC2, IAM, S3, IP blocking, routing logic)
+- Severity threshold boundary (6.9 vs 7.0 vs 8.0)
+- Feature flag independence (`ISOLATE_EC2=false` does not suppress snapshots)
+- `ENABLE_AUTO_REMEDIATION=false` skips remediation but sends notification
+- ClientError handling for every AWS call (failure in one path doesn't crash the handler)
+- SNS/Slack notification failure isolation (notification error does not convert a 200 to 500)
+- S3 KMS storage — correct key path format and encryption header
+- IAM deny-all policy attachment (with and without an access key ID present)
+- DNS exfiltration chunking, subdomain format, and socket error handling
+
+---
+
+## Threat Simulation
+
+After deployment, generate findings to exercise the pipeline:
+
+```bash
+cd threat-simulation
+
+# Generate a specific finding category
+python3 guardduty_tester.py --action generate --category ec2_crypto
+
+# Run a full end-to-end test (generate → wait → verify remediation → report)
+python3 guardduty_tester.py --action test --category iam_credential
+
+# Simulate DNS-based data exfiltration (triggers GuardDuty DNS findings)
+python3 dns_exfiltration.py --mode exfil --verbose
+```
+
+Available finding categories: `ec2_crypto`, `ec2_backdoor`, `ec2_trojan`, `iam_credential`, `iam_persistence`, `s3_exfiltration`, `s3_policy`, `recon`.
+
+> **Note:** The `--action test` and `--mode trigger` commands generate real GuardDuty findings. Only run them in a dedicated test account.
+
+---
 
 ## Verify Remediation
 
-1. Check CloudWatch Logs for Lambda execution:
-
 ```bash
+# Watch Lambda logs in real time
 aws logs tail /aws/lambda/guardduty-security-dev-remediation-handler --follow
-```
 
-2. Check SNS notifications (email/Slack)
-
-3. Verify EC2 instance isolation:
-
-```bash
+# Confirm EC2 quarantine (security group should be quarantine-only)
 aws ec2 describe-instances --instance-ids <instance-id> \
-  --query 'Reservations[].Instances[].SecurityGroups'
+  --query 'Reservations[].Instances[].{ID:InstanceId,SGs:SecurityGroups,Tags:Tags}'
+
+# Check stored findings in S3
+aws s3 ls s3://<findings-bucket>/findings/ --recursive
 ```
 
-## 🧹Cleanup
+---
 
-When you're done testing or want to tear down the environment, follow these steps to properly clean up all resources and avoid ongoing charges.
-
-Move to the root directory of the project and run the following commands:
+## Cleanup
 
 ```bash
-chmod +x cleanup.sh
-./cleanup.sh
+cd terraform
+terraform destroy
 ```
 
-### Important Notes
-
-1. KMS Keys: KMS keys are scheduled for deletion (7-30 days) rather than immediately deleted. This is an AWS safety feature.
-2. CloudWatch Logs: Log data is retained according to the retention policy. Deleting the log group removes all logs immediately.
-3. Forensic Snapshots: Consider keeping snapshots if they contain evidence from actual security incidents.
-4. Quarantined Instances: Always review quarantined instances before cleanup—they may have been legitimately compromised.
-5. Billing: Some resources may have already incurred charges. Check your AWS bill after cleanup.
-6. State File: If using remote state (S3 backend), remember to clean up the state file and DynamoDB lock table if no longer needed.
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. If this project helped you, please consider giving it a star!
+Note: KMS keys are scheduled for deletion (7-day minimum waiting period) rather than deleted immediately. Forensic snapshots are not removed by Terraform — review them before deletion if any real security incidents occurred during testing.

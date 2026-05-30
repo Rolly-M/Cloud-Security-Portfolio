@@ -1,89 +1,61 @@
-# 🚀 Cloud Security Engineer Portfolio
+# Cloud Security Portfolio — Rolly Mougoue
 
-[![AWS Certified Solutions Architect](https://img.shields.io/badge/AWS%20Solutions%20Architect-Associate-orange?style=for-the-badge&logo=amazon-aws)](https://www.credly.com/badges/33105d15-a047-4119-a4e0-1a145bae0381/public_url)
-[![ISC2 CC](https://img.shields.io/badge/ISC2%20CC-Certified%20in%20Cybersecurity-blue?style=for-the-badge&logo=isc2)](https://www.isc2.org/certifications/cc)
-[![CompTIA CySA+](https://img.shields.io/badge/CompTIA%20CySA+-Certified%20Cybersecurity%20Analyst-brightgreen?style=for-the-badge&logo=comptia)](https://www.credly.com/badges/a986ca8c-0a1b-4d0d-b2f6-9071278d1447/public_url)
-[![AZ-500](https://img.shields.io/badge/AZ--500-Passed-purple?style=for-the-badge&logo=microsoft-azure)](https://learn.microsoft.com/en-us/certifications/azure-security-engineer/) <!-- Update once passed -->
-[![AWS SCS-C01](https://img.shields.io/badge/AWS%20SCS--C01-Passed-red?style=for-the-badge&logo=amazon-aws)](https://aws.amazon.com/certification/certified-security-specialty/) <!-- Update once passed -->
-[![CCSP](https://img.shields.io/badge/CCSP-Passed-silver?style=for-the-badge&logo=isc2)](https://www.isc2.org/certifications/ccsp) <!-- Update once passed -->
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/[yourusername]/CloudSec-Portfolio/security-scan.yml?label=Security%20Scan)](https://github.com/[yourusername]/CloudSec-Portfolio/actions)
+[![AWS Solutions Architect – Associate](https://img.shields.io/badge/AWS-Solutions_Architect_Associate-FF9900?style=flat-square&logo=amazon-aws&logoColor=white)](https://www.credly.com/badges/33105d15-a047-4119-a4e0-1a145bae0381/public_url)
+[![ISC2 CC](https://img.shields.io/badge/ISC2-Certified_in_Cybersecurity-005A8B?style=flat-square&logo=isc2&logoColor=white)](https://www.isc2.org/certifications/cc)
+[![CompTIA CySA+](https://img.shields.io/badge/CompTIA-CySA%2B-E3002B?style=flat-square&logo=comptia&logoColor=white)](https://www.credly.com/badges/a986ca8c-0a1b-4d0d-b2f6-9071278d1447/public_url)
+[![Tests](https://img.shields.io/badge/tests-73_passing-brightgreen?style=flat-square&logo=pytest&logoColor=white)](#)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Rolly_Mougoue-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rollymougoue/)
 
-> **3-Month Journey: From CySA+ to Cloud Security Expert**  
-> *Live Portfolio with 14+ AWS/Azure/CCSP Labs | Terraform IaC | Free Tier Demos | Job-Ready Cloud Sec Engineer*
-
-<div class="header">
-    <h2>👋 Hi! I'm Rolly Mougoue, Aspiring Cloud Security Engineer</h2>
-    <p><strong>Goal: Secure Multi-Cloud Environments (AWS/Azure) | Target Roles: Cloud Security Engineer ($120k+)</strong></p>
-    <a href="https://www.linkedin.com/in/rollymougoue/"><img src="https://img.shields.io/badge/LinkedIn-Connect%20Now-blue?style=for-the-badge&logo=linkedin" alt="LinkedIn"></a>
-    <a href="Resume - Security Analyst (2).pdf"><img src="https://img.shields.io/badge/Resume-PDF-green?style=for-the-badge&logo=adobe-acrobat-reader" alt="Resume"></a>
-</div>
-
-## 📊 Skills Matrix
-| Category | Proficiency | Proof (Repo/Lab) |
-|----------|-------------|------------------|
-| **AWS Security Hub** | ⭐⭐⭐⭐⭐ (10/10) | [Security Hub CIS](AWS-Security-Hub-CIS) |
-| **GuardDuty & Inspector** | ⭐⭐⭐⭐⭐ | [GuardDuty Lab](AWS-GuardDuty-Lab) |
-| **Azure Sentinel/Defender** | ⭐⭐⭐⭐ (9/10) | [Azure NSG/FW](Azure-NSG-Baseline) |
-| **Terraform Secure IaC** | ⭐⭐⭐⭐⭐ | All Repos |
-| **CIS/NIST Compliance** | ⭐⭐⭐⭐⭐ | [Compliance Pipeline](AWS-Compliance-Pipeline) |
-| **EKS/AKS Hardening** | ⭐⭐⭐⭐ | [EKS CIS](AWS-EKS-CIS) |
-| **KMS/KeyVault Encryption** | ⭐⭐⭐⭐⭐ | [Multi-Cloud Encrypt](AWS-MultiCloud-Encrypt) |
-
-## 📂 All Repositories (14+ Hands-On Labs)
-1. **[AWS-Secure-VPC](https://github.com/Rolly-M/CLoud-Security-Portfolio/tree/main/1%20-%20AWS-Secure-VPC)** : CIS VPC Baseline + NACL/Flow Logs.
-2. **[AWS-GuardDuty-Lab](https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/2%20-%20AWS_Guard_Duty)** : Threat Simulation + Lambda Remediation.
-3. **[AWS-Inspector-NSG](AWS-Inspector-NSG)** : Vulnerability Scans + Azure Hybrid.
-4. **[AWS-WAF-Terraform](AWS-WAF-Terraform)** : SQLi/XSS Blocking.
-5. **[AWS-Macie-KMS](AWS-Macie-KMS)** : PII Classification on S3.
-6. **[AWS-Security-Hub-CIS](AWS-Security-Hub-CIS)** : 100% Compliance Controls.
-7. **[AWS-Detective](AWS-Detective)** : Behavior Graph Analysis.
-8. **[AWS-Nitro-Enclaves](AWS-Nitro-Enclaves)** : Confidential Compute.
-9. **[AWS-EKS-CIS](AWS-EKS-CIS)** : Pod Security + IRSA.
-10. **[Azure-NSG-Baseline](Azure-NSG-Baseline)** : Network Security Groups.
-11. **[AWS-MultiCloud-Encrypt](AWS-MultiCloud-Encrypt)** : KMS vs KeyVault.
-12. **[AWS-Compliance-Pipeline](AWS-Compliance-Pipeline)** : GitHub Actions Trivy.
-13. **[Sentinel-AWS-Fusion](Sentinel-AWS-Fusion)** : Cross-Cloud Monitoring.
-14. **[Zero-Trust-IAM](Zero-Trust-IAM)** : CCSP Advanced.
-
-**🚀 Fork & Star to contribute!** All labs are Terraform/ARM reproducible + CI scans.
-
-## 🎬 Journey Timeline
-![Roadmap GIF](roadmap.gif)  
-*(Add GIF created via Canva: S1-12 phases with cert milestones.)*
-
-### Lab Example: AWS Secure VPC (Steps)
-1. `terraform init && terraform apply` (VPC + Subnets).
-2. Config NACL: Deny SSH/HTTP except bastion.
-3. Enable Flow Logs → CloudWatch.
-4. Test: `nmap` breach simulation.
-5. `terraform destroy` + Screenshot 100% Secure.
-
-**Demo GIF** :  
-![VPC Demo](demos/vpc-demo.gif)
-
-## 🛠️ How to Use This Portfolio
-1. **Clone** : `git clone https://github.com/Rolly-M/CloudSec-Portfolio.git`
-2. **Demos** : Click Live Links (Free Tier).
-3. **Reproduce Labs** : Each repo has `README.md` with TF steps.
-4. **CI/CD** : GitHub Actions auto-scan (Trivy/Semgrep) on push.
-
-## 🤝 Contact & Job Opportunities
-- 📧 Email: rollymk25@gmail.com
-- 💼 LinkedIn: [linkedin.com/in/rolly-mougoue](https://www.linkedin.com/in/rolly-mougoue/)
-- 📄 Resume: [Download PDF]("Resume - Security Analyst (2).pdf")
-
-**Open to Cloud Security Engineer opportunities | AWS/Azure Focus | France/EU Remote.**
-
-## 📈 Contributions & Stars
-[![GitHub stars](https://img.shields.io/github/stars/Rolly-M/CloudSec-Portfolio?style=social)](https://github.com/Rolly-M/CloudSec-Portfolio/stargazers/)
-[![GitHub forks](https://img.shields.io/github/forks/Rolly-M/CloudSec-Portfolio?style=social)](https://github.com/Rolly-M/CloudSec-Portfolio/network/members/)
-
-**Thanks for the ⭐! Share your forked lab on LinkedIn #CloudSecurity**
+Cloud Security Engineer focused on AWS-native security automation. This portfolio contains production-quality infrastructure and Lambda code — built with Terraform, tested with pytest and moto, and designed to reflect real security engineering work rather than tutorial exercises.
 
 ---
 
-*This portfolio was built with ❤️ in 3 months (Plan: AZ-500 W6 | SCS W9 | CCSP W12). Weekly updates!*  
-*Last Update: [Today's Date]*
+## Projects
 
-</body>
-</html>
+### [1 — AWS Secure VPC](./1%20-%20AWS-Secure-VPC/TF%20scripts/)
+A hardened multi-AZ VPC built entirely in Terraform. Implements defense-in-depth with layered Network ACLs, Security Group referencing, VPC Flow Logs split into accepted/rejected streams, and a CloudWatch dashboard with security-focused alarms (SSH brute-force detection, port scan heuristics, CPU anomalies). Access to private instances is gated through a bastion host using SSH agent forwarding — no direct internet exposure.
+
+**Key techniques:** multi-AZ subnet segmentation, NACL deny rules, Security Group chaining, VPC Flow Log forensics, CloudWatch metric filters for security events, SNS alerting.
+
+---
+
+### [2 — GuardDuty Threat Detection & Auto-Remediation](./2%20-%20AWS_Guard_Duty/)
+An event-driven security response pipeline that takes a GuardDuty finding from detection to automated containment without human intervention. EventBridge routes findings to a Lambda function that isolates compromised EC2 instances (security group replacement), disables IAM credentials (key deactivation + deny-all inline policy), creates forensic EBS snapshots before containment, and fires notifications to SNS and Slack.
+
+Includes a threat simulation toolkit — a Python test harness and a DNS exfiltration simulator — to generate findings that exercise the remediation pipeline end-to-end.
+
+The Lambda remediation logic has full unit-test coverage using pytest and moto (AWS service mocking), with 73 tests covering all remediation paths, error cases, severity thresholds, and feature flags.
+
+**Key techniques:** GuardDuty detector configuration, EventBridge rules, Lambda IAM least-privilege, EC2 quarantine via security group replacement, IAM credential revocation, KMS-encrypted S3 findings storage, forensic EBS snapshots, moto-based unit testing.
+
+---
+
+## Tech Stack
+
+| Layer | Tools |
+|---|---|
+| Infrastructure | Terraform ≥ 1.0, AWS Provider ~5.0 |
+| Compute | AWS Lambda (Python 3.11), EC2 |
+| Security services | GuardDuty, EventBridge, IAM, KMS, VPC Flow Logs |
+| Alerting | SNS, Slack Webhooks |
+| Testing | pytest, moto, unittest.mock |
+| CI | GitHub Actions |
+
+---
+
+## Running the Tests
+
+```bash
+pip install -r requirements-dev.txt
+python -m pytest tests/ -q
+```
+
+73 tests, no AWS credentials required — all AWS calls are intercepted by moto.
+
+---
+
+## Contact
+
+- Email: rollymk25@gmail.com
+- LinkedIn: [linkedin.com/in/rollymougoue](https://www.linkedin.com/in/rollymougoue/)
+- Open to Cloud Security Engineer roles (AWS focus, EU/Remote)

@@ -1,0 +1,15 @@
+[run]
+source =
+    2 - AWS_Guard_Duty/lambda
+    2 - AWS_Guard_Duty/threat-simulation
+omit =
+    tests/*
+    */conftest.py
+
+[report]
+show_missing = true
+fail_under = 80
+exclude_lines =
+    pragma: no cover
+    if __name__ == .__main__.:
+    def main\(

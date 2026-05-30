@@ -1,117 +1,161 @@
-# AWS Multi-AZ VPC Infrastructure with Bastion Host and Advanced Monitoring
+# Project 1 — AWS Secure VPC
 
-## 📌Overview
-This repository contains a production-ready Terraform configuration that deploys a highly secure, scalable, and observable AWS networking environment. The infrastructure follows the AWS Well-Architected Framework by utilizing multiple Availability Zones (AZs), isolated subnets, and a robust security perimeter.
+[![Terraform](https://img.shields.io/badge/Terraform-≥1.0-7B42BC?style=flat-square&logo=terraform&logoColor=white)](https://www.terraform.io/)
+[![AWS](https://img.shields.io/badge/AWS-VPC_/_EC2_/_CloudWatch-FF9900?style=flat-square&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/vpc/)
 
-The core of this setup is a VPC (10.0.0.0/16) featuring a Bastion Host (Jump Box) architecture, ensuring that private resources remain unreachable directly from the public internet.
+A production-hardened AWS network built entirely in Terraform. The architecture follows defense-in-depth: public and private subnets are separated at both the routing and firewall layers, access to private instances is gated through a bastion host, and all network traffic is logged with CloudWatch alarms watching for brute-force and port-scan patterns.
 
-## 🏗 Architecture Diagram
+This project provides the VPC foundation that Project 2 (GuardDuty) deploys into.
 
-<img width="531" height="977" alt="image" src="https://github.com/user-attachments/assets/d577c5bc-8ea8-4ba4-bb5b-8f32592e7fa5" />
+---
 
-## 🛠 Component Breakdown
+## Architecture
 
-1. Networking (VPC & Subnets)
-- *VPC*: A dedicated virtual network with CIDR 10.0.0.0/16.
-- *Public Subnets (x3)*: Distributed across three Availability Zones. These subnets host the Bastion Host and the NAT Gateway.
-- *Private Subnets (x3)*: Isolated subnets where backend workloads (Web Servers) reside. They have no direct route to the internet.
-- *Internet Gateway (IGW)*: Enables communication between the VPC and the internet for public resources.
-- *NAT Gateway*: A fully managed AWS service that allows private instances to initiate outbound traffic (for OS updates/patches) while preventing the internet from initiating connections with them.
+<img width="531" height="977" alt="VPC Architecture Diagram" src="https://github.com/user-attachments/assets/d577c5bc-8ea8-4ba4-bb5b-8f32592e7fa5" />
 
-2. Compute & Access (The Bastion Host)
-- Bastion Host: A hardened EC2 instance acting as the "Jump Box." It is the only entry point for administrative SSH access to the private environment.
-- Private Instances: Two Amazon Linux 2 EC2 instances running Apache Web Server, located in private subnets for maximum security.
-- IAM Instance Profiles: All instances are pre-configured with permissions for AWS Systems Manager (SSM) and CloudWatch Agent.
+---
 
-3. Security (Multi-Layered Defense)
-- Network ACLs (NACLs):
-    - Public: Allows SSH from your specific IP only; allows HTTP/HTTPS traffic.
-    - Private: Denies all SSH (22) and HTTP (80) traffic unless it originates from the Bastion Host subnet or the internal VPC CIDR.
-- Security Groups (SGs):
-    - Bastion SG: Restricted to SSH access from a single admin IP.
-    - Private SG: Acts as an internal firewall, only allowing SSH traffic if it comes from the Bastion Security Group (Security Group Referencing).
+## Design Decisions
 
-4. Observability & Monitoring
-- VPC Flow Logs: Captures IP traffic information for all network interfaces in the VPC.
-    - Accepted Traffic Log: General auditing of network flow.
-    - Rejected Traffic Log: Specifically monitors failed connection attempts for security forensics.
-- CloudWatch Alarms: Automated alerts for:
-    - High CPU Utilization (>80%).
-    - EC2 Status Check Failures.
-    - Security Events: Alerts on excessive rejected SSH attempts (possible brute-force) and port scanning patterns.
-- CloudWatch Dashboard: A unified visual interface to monitor the health of the entire infrastructure, including NAT Gateway bandwidth, EC2 performance, and security metrics.
-- SNS Notifications: Critical alerts are pushed directly to a configured administrator email address.
+### Why two firewall layers?
 
-## 🚀 Deployment Instructions
+Security Groups and Network ACLs serve different purposes and complement each other:
+
+- **NACLs** are stateless subnet-level rules. They catch traffic that a Security Group would never see — for example, a response packet arriving on an unexpected port, or traffic from an instance that bypassed its SG by changing its own network config. The private subnet NACL explicitly denies SSH (22) and HTTP (80) from any source except the VPC CIDR and bastion subnet.
+- **Security Groups** are stateful and instance-level. The private SG uses Security Group referencing — it allows SSH only from the bastion's SG ID, not from a CIDR range. This means even if a new instance were launched into the public subnet, it could not SSH into private instances unless it was explicitly assigned the bastion SG.
+
+### Why split VPC Flow Logs?
+
+Two separate log groups — one for accepted traffic, one for rejected — makes security queries faster. A SOC analyst hunting for brute-force attempts can query the rejected-traffic log without scanning all accepted flows. CloudWatch metric filters on the rejected log drive the SSH brute-force and port-scan alarms.
+
+### Why a bastion over a VPN or SSM?
+
+For a portfolio project, a bastion is the most transparent demonstration of network segmentation and key management. SSH agent forwarding (`ssh -A`) means the private key never leaves the engineer's machine — it is not copied to the bastion. In production, Systems Manager Session Manager (no open ports) or a VPN would typically replace this.
+
+---
+
+## Infrastructure Components
+
+### Networking
+
+| Resource | Detail |
+|---|---|
+| VPC | `10.0.0.0/16`, DNS hostnames and resolution enabled |
+| Public subnets (×3) | One per AZ; host the bastion and NAT Gateway |
+| Private subnets (×3) | One per AZ; host application instances with no direct internet route |
+| Internet Gateway | Outbound path for public subnet resources |
+| NAT Gateway | Allows private instances to pull OS updates; blocks inbound connections |
+| Route tables | Public table routes `0.0.0.0/0` → IGW; private table routes `0.0.0.0/0` → NAT |
+
+### Security
+
+| Resource | Detail |
+|---|---|
+| Public NACL | Allows SSH from admin IP only, HTTP/HTTPS for web traffic; denies everything else |
+| Private NACL | Denies SSH and HTTP from all sources except VPC CIDR and bastion subnet |
+| Bastion Security Group | SSH ingress from single admin CIDR only |
+| Private Security Group | SSH ingress from bastion SG ID only (Security Group referencing) |
+
+### Observability
+
+| Resource | Detail |
+|---|---|
+| VPC Flow Logs (accepted) | All accepted traffic → CloudWatch log group |
+| VPC Flow Logs (rejected) | All rejected traffic → separate log group for security analysis |
+| CloudWatch metric filters | SSH brute-force (>10 rejected SSH in 5 min), port scan (>50 unique ports in 1 min) |
+| CloudWatch alarms | CPU >80%, EC2 status check failure, SSH brute-force, port scan pattern |
+| CloudWatch dashboard | Unified view: NAT bandwidth, EC2 CPU, security event counts |
+| SNS topic | Email alerts for all alarms |
+
+### Compute
+
+| Resource | Detail |
+|---|---|
+| Bastion host | Amazon Linux 2, `t2.micro`, public subnet, hardened SG |
+| Private instances (×2) | Amazon Linux 2, `t2.micro`, Apache HTTP server, private subnets |
+| IAM instance profiles | SSM + CloudWatch Agent permissions on all instances |
+
+---
+
+## Deployment
 
 ### Prerequisites
 
-- Terraform installed (>= 1.0.0)
-- AWS CLI configured with appropriate credentials
-- An existing AWS Key Pair for SSH access
+- Terraform ≥ 1.0
+- AWS CLI configured (`aws configure`)
+- An existing EC2 Key Pair in the target region
 
 ### Steps
 
-1. Clone the repository:
-
 ```bash
-git clone https://github.com/Rolly-M/CLoud-Security-Portfolio.git
-cd "1 - AWS-Secure-VPC"
-```
+git clone https://github.com/Rolly-M/Cloud-Security-Portfolio.git
+cd "Cloud-Security-Portfolio/1 - AWS-Secure-VPC/TF scripts"
 
-2. Initialize Terraform:
-
-```bash
 terraform init
 ```
 
-3. Configure Variables:
-Update terraform.tfvars with your specific values:
-- allowed_ssh_cidr: Your public IP (e.g., 1.2.3.4/32)
-- alert_email: Your email for SNS notifications
-- key_name: The name of your AWS SSH Key Pair
+Create `terraform.tfvars`:
 
-4. Plan and Apply:
+```hcl
+allowed_ssh_cidr = "1.2.3.4/32"   # your public IP
+alert_email      = "you@example.com"
+key_name         = "my-keypair"
+```
 
 ```bash
 terraform plan
 terraform apply
 ```
 
-## 🔑 Accessing the Private Environment
+Confirm the SNS email subscription when it arrives.
 
-To maintain a high security posture, access to private instances is performed via SSH Agent Forwarding:
+### Accessing Private Instances
 
-1. Add your key to the SSH agent:
-
-```bash
-ssh-add <YOUR_KEY_PAIR.pem>
-```
-
-2. Connect to the Bastion Host:
+SSH agent forwarding keeps your private key off the bastion:
 
 ```bash
+ssh-add my-keypair.pem
 ssh -A ec2-user@<BASTION_PUBLIC_IP>
-```
 
-3. Jump to a private instance:
-
-```bash
+# From the bastion:
 ssh ec2-user@<PRIVATE_INSTANCE_IP>
 ```
 
-## 📊 Monitoring
+The bastion's public IP and private instance IPs are Terraform outputs.
 
-Once deployed, you can access the Infrastructure Dashboard in the CloudWatch console. The URL is provided as a Terraform output:
+### Monitoring Dashboard
 
 ```bash
 terraform output cloudwatch_dashboard_url
 ```
 
-## ⚠️ Cleanup
+Open the URL in the AWS console to view the pre-built dashboard.
 
-To avoid ongoing AWS costs (specifically for the NAT Gateway and EC2 instances), destroy the infrastructure when finished:
+---
+
+## Validating the Security Posture
+
+An automated test script checks all the security controls without manual inspection:
+
+```bash
+chmod +x test_the_infra.sh
+./test_the_infra.sh
+```
+
+Tests:
+- SSH connectivity to bastion
+- SSH jump to private instance via bastion
+- Apache web server responding on private instance
+- NAT Gateway (outbound internet from private instance)
+- CloudWatch alarms deployed
+- VPC Flow Logs configured on both log groups
+
+---
+
+## Cleanup
 
 ```bash
 terraform destroy
 ```
+
+The NAT Gateway and EC2 instances are the primary cost drivers. `terraform destroy` removes everything managed by this configuration.
