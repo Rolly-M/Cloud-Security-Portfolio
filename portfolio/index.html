@@ -3,818 +3,550 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Rolly Mougoue — Cloud Security Engineer. AWS security automation portfolio built with Terraform, Python, and pytest.">
+  <meta name="description" content="Rolly Mougoue — Cloud Security Engineer. AWS security automation portfolio: GuardDuty, WAF, Inspector v2, Macie, and Secure VPC — all built with Terraform and fully unit-tested.">
   <meta property="og:title" content="Rolly Mougoue — Cloud Security Engineer">
+  <meta property="og:description" content="AWS security automation portfolio: threat detection, auto-remediation, PII classification, and web application firewall — all in Terraform + Python.">
   <meta property="og:type" content="website">
   <title>Rolly Mougoue — Cloud Security Engineer</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- ── NAV ──────────────────────────────────────────────────── -->
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="#top" class="nav-logo">RM<span>.</span></a>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="nav-end">
-      <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio" target="_blank" rel="noopener" class="btn btn-outline btn-sm">GitHub</a>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+  <!-- ── NAVIGATION ─────────────────────────────────────── -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">RM<span class="accent">.</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio"
+         target="_blank" rel="noopener noreferrer"
+         class="btn btn-outline nav-cta">
+        GitHub
+      </a>
+      <button class="nav-toggle" id="nav-toggle"
+              aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- ── HERO ─────────────────────────────────────────────────── -->
-<section id="top" class="hero">
-  <div class="hero-orb orb-1" aria-hidden="true"></div>
-  <div class="hero-orb orb-2" aria-hidden="true"></div>
-  <div class="container">
-    <div class="hero-avail">
-      <span class="avail-dot"></span>
-      Open to Cloud Security roles · Alberta, CA or Remote EU
-    </div>
-    <h1>Rolly Mougoue</h1>
-    <p class="hero-role">&gt; Cloud Security Engineer</p>
-    <p class="hero-sub">
-      AWS-native security automation: threat detection, auto-remediation,
-      PII classification, WAF, and vulnerability scanning — all in Terraform + Python,
-      all unit-tested with moto.
-    </p>
-    <div class="hero-btns">
-      <a href="#projects" class="btn btn-primary">View Projects</a>
-      <a href="https://www.linkedin.com/in/rolly-mougoue/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
-      <a href="mailto:rollymk25@gmail.com" class="btn btn-ghost">Email</a>
-    </div>
-    <div class="hero-certs">
-      <a href="https://www.credly.com/badges/33105d15-a047-4119-a4e0-1a145bae0381/public_url" target="_blank" rel="noopener" class="cert-chip">AWS SAA</a>
-      <a href="https://www.isc2.org/certifications/cc" target="_blank" rel="noopener" class="cert-chip">ISC2 CC</a>
-      <a href="https://www.credly.com/badges/a986ca8c-0a1b-4d0d-b2f6-9071278d1447/public_url" target="_blank" rel="noopener" class="cert-chip">CompTIA CySA+</a>
-    </div>
-  </div>
-</section>
-
-<!-- ── PROJECTS ──────────────────────────────────────────────── -->
-<section id="projects">
-  <div class="container">
-    <header class="sec-header">
-      <span class="sec-label">Portfolio</span>
-      <h2>Projects</h2>
-      <p>Click any project to view the architecture diagram and full details.</p>
-    </header>
-
-    <div class="cards-grid">
-
-      <!-- 01 VPC -->
-      <article class="card" onclick="openModal('m-vpc')" tabindex="0" role="button" aria-label="View AWS Secure VPC project">
-        <div class="card-top">
-          <span class="card-num">01</span>
-        </div>
-        <h3>AWS Secure VPC</h3>
-        <p>Hardened multi-AZ VPC with layered NACLs, split VPC Flow Logs, CloudWatch threat alarms, and bastion-gated private access.</p>
-        <div class="card-tags">
-          <span class="tag t-net">VPC</span>
-          <span class="tag t-net">Flow Logs</span>
-          <span class="tag t-mgmt">CloudWatch</span>
-          <span class="tag t-iac">Terraform</span>
-        </div>
-        <span class="card-cta">View details →</span>
-      </article>
-
-      <!-- 02 GuardDuty -->
-      <article class="card card-featured" onclick="openModal('m-gd')" tabindex="0" role="button" aria-label="View GuardDuty project">
-        <div class="card-top">
-          <span class="card-num">02</span>
-          <span class="card-badge">Featured</span>
-        </div>
-        <h3>GuardDuty Threat Detection &amp; Auto-Remediation</h3>
-        <p>Event-driven pipeline: GuardDuty finding → EventBridge → Lambda. Isolates EC2, revokes IAM keys, snapshots EBS, and fires SNS + Slack — all without human intervention.</p>
-        <div class="card-tags">
-          <span class="tag t-sec">GuardDuty</span>
-          <span class="tag t-int">EventBridge</span>
-          <span class="tag t-comp">Lambda</span>
-          <span class="tag t-sec">IAM</span>
-          <span class="tag t-iac">Terraform</span>
-          <span class="tag t-test">73 tests</span>
-        </div>
-        <span class="card-cta">View details →</span>
-      </article>
-
-      <!-- 03 Inspector -->
-      <article class="card" onclick="openModal('m-insp')" tabindex="0" role="button" aria-label="View Inspector v2 project">
-        <div class="card-top">
-          <span class="card-num">03</span>
-        </div>
-        <h3>AWS Inspector v2 — CVE Scanning</h3>
-        <p>Continuous EC2 vulnerability scanning via SSM Agent — no open ports. HIGH/CRITICAL findings trigger EC2 tagging and SNS alerts via Lambda.</p>
-        <div class="card-tags">
-          <span class="tag t-sec">Inspector v2</span>
-          <span class="tag t-mgmt">SSM</span>
-          <span class="tag t-int">EventBridge</span>
-          <span class="tag t-iac">Terraform</span>
-          <span class="tag t-test">27 tests</span>
-        </div>
-        <span class="card-cta">View details →</span>
-      </article>
-
-      <!-- 04 WAF -->
-      <article class="card" onclick="openModal('m-waf')" tabindex="0" role="button" aria-label="View WAF project">
-        <div class="card-top">
-          <span class="card-num">04</span>
-        </div>
-        <h3>AWS WAF — Web Application Firewall</h3>
-        <p>WAFv2 protecting an API Gateway with 5 managed rule groups: OWASP, SQLi, Known Bad Inputs, per-IP rate limiting, and a custom IP blocklist.</p>
-        <div class="card-tags">
-          <span class="tag t-sec">WAFv2</span>
-          <span class="tag t-net">API Gateway</span>
-          <span class="tag t-mgmt">CloudWatch</span>
-          <span class="tag t-iac">Terraform</span>
-          <span class="tag t-test">33 tests</span>
-        </div>
-        <span class="card-cta">View details →</span>
-      </article>
-
-      <!-- 05 Macie -->
-      <article class="card" onclick="openModal('m-macie')" tabindex="0" role="button" aria-label="View Macie + KMS project">
-        <div class="card-top">
-          <span class="card-num">05</span>
-        </div>
-        <h3>AWS Macie + KMS — PII Classification</h3>
-        <p>Automated PII discovery and quarantine: Macie runs weekly S3 classification jobs, Lambda quarantines flagged objects and fires alerts. Single rotating KMS CMK encrypts all buckets.</p>
-        <div class="card-tags">
-          <span class="tag t-sec">Macie v2</span>
-          <span class="tag t-sec">KMS</span>
-          <span class="tag t-store">S3</span>
-          <span class="tag t-iac">Terraform</span>
-          <span class="tag t-test">36 tests</span>
-        </div>
-        <span class="card-cta">View details →</span>
-      </article>
-
-      <!-- 06 IAM Collaboration -->
-      <article class="card card-collab" onclick="openModal('m-iam')" tabindex="0" role="button" aria-label="View AWS IAM collaboration project">
-        <div class="card-top">
-          <span class="card-num">06</span>
-          <span class="card-badge card-badge-collab">Collaboration</span>
-        </div>
-        <h3>AWS IAM Security Lab</h3>
-        <p>Multi-account IAM security controls co-authored with <a href="https://github.com/SamsonIdowu" target="_blank" rel="noopener" onclick="event.stopPropagation()">SamsonIdowu</a>. Covers permission boundaries, SCPs, IAM roles, and least-privilege policy design.</p>
-        <div class="card-tags">
-          <span class="tag t-sec">IAM</span>
-          <span class="tag t-sec">Organizations</span>
-          <span class="tag t-iac">Terraform</span>
-        </div>
-        <span class="card-cta">View details →</span>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ── CONTACT ───────────────────────────────────────────────── -->
-<section id="contact">
-  <div class="container">
-    <div class="contact-box">
-      <div class="avail-pill">
-        <span class="avail-dot"></span>
-        Available for roles in Alberta, Canada, or remote across Canada and the EU
+  <!-- ── HERO ───────────────────────────────────────────── -->
+  <section id="hero" class="hero" aria-label="Introduction">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <div class="hero-badge">Open to Cloud Security roles · Calgary, Remote Canada or Remote EU</div>
+      <h1 class="hero-name">Rolly Mougoue</h1>
+      <h2 class="hero-title">Cloud Security Engineer</h2>
+      <p class="hero-tagline">
+        Building automated defenses on AWS — threat detection to containment,
+        infrastructure as code, 154 tests and counting.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="https://www.linkedin.com/in/rolly-mougoue/"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn-outline">LinkedIn</a>
+        <a href="mailto:rollymk25@gmail.com" class="btn btn-ghost">Get in Touch</a>
       </div>
-      <h2>Let's talk</h2>
-      <div class="contact-links">
-        <a href="mailto:rollymk25@gmail.com" class="contact-link">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          rollymk25@gmail.com
+      <div class="hero-certs" aria-label="Certifications">
+        <span class="cert-badge">AWS SAA</span>
+        <span class="cert-badge">ISC2 CC</span>
+        <span class="cert-badge">CompTIA CySA+</span>
+      </div>
+    </div>
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ── STATS BAR ──────────────────────────────────────── -->
+  <div class="stats-bar" role="region" aria-label="Portfolio statistics">
+    <div class="container stats-grid">
+      <div class="stat-item">
+        <span class="stat-number" data-target="5">0</span>
+        <span class="stat-label">Security Projects</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="154">0</span>
+        <span class="stat-label">Tests Passing</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="3">0</span>
+        <span class="stat-label">Certifications</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" data-target="100">0</span>
+        <span class="stat-label">% Terraform IaC</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ABOUT ──────────────────────────────────────────── -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text fade-in">
+          <div class="section-header">
+            <span class="section-label">About</span>
+            <h2 class="section-title">Security engineering<br>that ships as code</h2>
+          </div>
+          <p>
+            I'm a Cloud Security Engineer focused on AWS-native security automation.
+            Every project in this portfolio is fully deployed with Terraform,
+            backed by unit tests that run without AWS credentials, and designed
+            to reflect real security engineering work — not tutorial walkthroughs.
+          </p>
+          <p>
+            My approach: <span class="about-highlight">automate the response, not just the detection.</span>
+            When GuardDuty flags a compromised instance, a Lambda isolates it in seconds.
+            When Macie finds PII in an S3 bucket, another Lambda quarantines the object
+            before a human even reads the alert.
+          </p>
+          <p>
+            I hold the AWS Solutions Architect – Associate, ISC2 Certified in Cybersecurity,
+            and CompTIA CySA+ certifications, and I'm targeting AWS Security Specialty next.
+          </p>
+        </div>
+        <ul class="approach-list fade-in delay-2">
+          <li class="approach-item">
+            <span class="approach-icon">🛡️</span>
+            <div>
+              <h4>Defense in Depth</h4>
+              <p>Every project layers controls: network, identity, detection, and response — not just one layer.</p>
+            </div>
+          </li>
+          <li class="approach-item">
+            <span class="approach-icon">⚙️</span>
+            <div>
+              <h4>Infrastructure as Code</h4>
+              <p>All resources are Terraform-managed. Nothing is clicked into existence; everything is reproducible.</p>
+            </div>
+          </li>
+          <li class="approach-item">
+            <span class="approach-icon">🧪</span>
+            <div>
+              <h4>Tested Remediation Logic</h4>
+              <p>Production Lambda code has moto-based unit tests. Severity thresholds, feature flags, and error paths are all covered.</p>
+            </div>
+          </li>
+          <li class="approach-item">
+            <span class="approach-icon">💰</span>
+            <div>
+              <h4>Cost-Conscious Design</h4>
+              <p>API Gateway over ALB (saves $18/mo), scheduled Macie jobs over continuous monitoring, one KMS key over four.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CERTIFICATIONS ─────────────────────────────────── -->
+  <section id="certifications">
+    <div class="container">
+      <div class="section-header fade-in" style="text-align:center; margin-bottom:36px;">
+        <span class="section-label">Credentials</span>
+        <h2 class="section-title">Certifications</h2>
+      </div>
+      <div class="certs-grid">
+        <a href="https://www.credly.com/badges/33105d15-a047-4119-a4e0-1a145bae0381/public_url"
+           target="_blank" rel="noopener noreferrer"
+           class="cert-card fade-in delay-1">
+          <div class="cert-logo">☁️</div>
+          <h3>AWS Solutions Architect</h3>
+          <p>Associate — Amazon Web Services</p>
+          <span class="cert-link-text">Verify on Credly →</span>
         </a>
-        <a href="https://www.linkedin.com/in/rolly-mougoue/" target="_blank" rel="noopener" class="contact-link">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          linkedin.com/in/rolly-mougoue
+        <a href="https://www.isc2.org/certifications/cc"
+           target="_blank" rel="noopener noreferrer"
+           class="cert-card fade-in delay-2">
+          <div class="cert-logo">🔐</div>
+          <h3>Certified in Cybersecurity</h3>
+          <p>CC — ISC2</p>
+          <span class="cert-link-text">ISC2 Certification →</span>
         </a>
-        <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio" target="_blank" rel="noopener" class="contact-link">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          github.com/Rolly-M
+        <a href="https://www.credly.com/badges/a986ca8c-0a1b-4d0d-b2f6-9071278d1447/public_url"
+           target="_blank" rel="noopener noreferrer"
+           class="cert-card fade-in delay-3">
+          <div class="cert-logo">🔍</div>
+          <h3>CySA+</h3>
+          <p>Cybersecurity Analyst — CompTIA</p>
+          <span class="cert-link-text">Verify on Credly →</span>
         </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ── FOOTER ────────────────────────────────────────────────── -->
-<footer>
-  <div class="container footer-inner">
-    <span>Rolly Mougoue · All infrastructure is Terraform · 154 tests passing in CI</span>
-    <span>AWS SAA · ISC2 CC · CompTIA CySA+</span>
-  </div>
-</footer>
-
-<!-- ════════════════════════════════════════════════════════════
-     MODALS
-     ════════════════════════════════════════════════════════════ -->
-
-<!-- ── MODAL 1: VPC ─────────────────────────────────────────── -->
-<div class="modal" id="m-vpc" role="dialog" aria-modal="true" aria-labelledby="m-vpc-title">
-  <div class="modal-box">
-    <div class="modal-hdr">
-      <div class="modal-hdr-left">
-        <span class="modal-num">01</span>
-        <h2 id="m-vpc-title">AWS Secure VPC</h2>
+  <!-- ── PROJECTS ───────────────────────────────────────── -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Work</span>
+        <h2 class="section-title">Projects</h2>
+        <p class="section-desc">
+          Five AWS security projects, each deployed with Terraform and unit-tested
+          with pytest + moto. No live AWS account needed to run the test suite.
+        </p>
       </div>
-      <button class="modal-close" aria-label="Close">&times;</button>
-    </div>
 
-    <!-- Architecture Diagram -->
-    <div class="diag-wrap">
-      <div class="diag-title">Architecture Diagram</div>
-      <div class="diag">
-        <div class="diag-group" style="--grp-color:#8C4FFF">
-          <div class="diag-group-label">VPC — us-east-1</div>
-          <div class="diag-row">
-            <div class="diag-sub" style="--sub-color:#8C4FFF">
-              <div class="diag-sub-label">Public Subnet</div>
-              <div class="diag-node net">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M3 11V7a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v1"/></svg>
-                <span>Internet<br>Gateway</span>
-              </div>
-              <div class="diag-arr">→</div>
-              <div class="diag-node comp">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
-                <span>Bastion<br>Host EC2</span>
+      <div class="projects-grid">
+
+        <!-- Project 2 — GuardDuty (featured) -->
+        <article class="project-card featured fade-in">
+          <div class="project-body">
+            <div class="project-header">
+              <div class="project-number">02</div>
+              <div class="project-title">
+                <small>Featured Project</small>
+                GuardDuty Threat Detection &amp; Auto-Remediation
               </div>
             </div>
-            <div class="diag-arr">→</div>
-            <div class="diag-sub" style="--sub-color:#8C4FFF">
-              <div class="diag-sub-label">Private Subnet</div>
-              <div class="diag-node comp">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
-                <span>App Server<br>EC2</span>
-              </div>
+            <p class="project-desc">
+              Event-driven pipeline that takes a GuardDuty finding from detection to
+              containment without human intervention. EventBridge routes findings to a
+              Lambda that isolates compromised EC2 instances, revokes IAM credentials,
+              creates forensic EBS snapshots, and fires dual-channel alerts — all in seconds.
+            </p>
+            <ul class="project-highlights">
+              <li>EC2 quarantine: all security groups replaced with a zero-ingress/egress SG</li>
+              <li>IAM revocation: access key disabled + deny-all inline policy attached</li>
+              <li>Forensic snapshots of all EBS volumes before containment</li>
+              <li>Severity threshold + per-action feature flags (all independently togglable)</li>
+              <li>SNS + Slack dual-channel notification with structured finding detail</li>
+            </ul>
+            <div class="project-tags" style="margin-top:16px;">
+              <span class="tag tag-aws">GuardDuty</span>
+              <span class="tag tag-aws">EventBridge</span>
+              <span class="tag tag-aws">Lambda</span>
+              <span class="tag tag-aws">EC2</span>
+              <span class="tag tag-aws">IAM</span>
+              <span class="tag tag-aws">KMS</span>
+              <span class="tag tag-aws">S3</span>
+              <span class="tag tag-aws">SNS</span>
+              <span class="tag tag-iac">Terraform</span>
+              <span class="tag tag-lang">Python 3.11</span>
+              <span class="tag tag-test">73 tests</span>
             </div>
           </div>
-        </div>
-
-        <div class="diag-row" style="margin-top:12px;justify-content:flex-start;padding-left:20px">
-          <div class="diag-arr" style="transform:rotate(90deg);margin:0 4px 0 40px">→</div>
-        </div>
-
-        <div class="diag-row" style="justify-content:flex-start;padding-left:20px;gap:8px">
-          <div class="diag-node mgmt">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-            <span>VPC<br>Flow Logs</span>
-          </div>
-          <div class="diag-arr">→</div>
-          <div class="diag-node mgmt">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            <span>CloudWatch<br>Alarms</span>
-          </div>
-          <div class="diag-arr">→</div>
-          <div class="diag-node int">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-            <span>SNS<br>Alerts</span>
-          </div>
-        </div>
-
-        <div class="diag-legend">
-          <span class="dl net">Networking</span>
-          <span class="dl comp">Compute</span>
-          <span class="dl mgmt">Management</span>
-          <span class="dl int">Integration</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal-body">
-      <div class="modal-desc">
-        <h3>How it works</h3>
-        <p>A multi-AZ VPC with public and private subnet tiers provides the secure network foundation for all other projects. Public subnets hold the Internet Gateway and Bastion host; private subnets hold application servers. All traffic is governed by two independent layers of firewall controls.</p>
-        <ul class="modal-ul">
-          <li>Dual-layer firewall: stateless NACLs block prohibited ports before traffic even reaches stateful Security Groups</li>
-          <li>VPC Flow Logs split into <em>accepted</em> and <em>rejected</em> streams — CloudWatch Insights queries run 2× faster</li>
-          <li>SSH brute-force and port-scan heuristics detected via CloudWatch metric filters on Flow Log data</li>
-          <li>Bastion host with SSH agent forwarding — private key never leaves the engineer's machine</li>
-          <li>All SNS alerts fire within seconds of threshold breach</li>
-        </ul>
-      </div>
-      <div class="modal-meta">
-        <div class="meta-item"><span class="meta-k">Monthly cost</span><span class="meta-v">~$1 / mo</span></div>
-        <div class="meta-item"><span class="meta-k">Infra</span><span class="meta-v">100% Terraform</span></div>
-        <div class="modal-tags">
-          <span class="tag t-net">VPC</span><span class="tag t-net">NACLs</span><span class="tag t-net">Security Groups</span>
-          <span class="tag t-net">Flow Logs</span><span class="tag t-mgmt">CloudWatch</span>
-          <span class="tag t-int">SNS</span><span class="tag t-comp">EC2</span>
-          <span class="tag t-iac">Terraform</span>
-        </div>
-        <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/1%20-%20AWS-Secure-VPC" target="_blank" rel="noopener" class="btn btn-primary btn-full">View on GitHub →</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── MODAL 2: GuardDuty ────────────────────────────────────── -->
-<div class="modal" id="m-gd" role="dialog" aria-modal="true" aria-labelledby="m-gd-title">
-  <div class="modal-box">
-    <div class="modal-hdr">
-      <div class="modal-hdr-left">
-        <span class="modal-num">02</span>
-        <h2 id="m-gd-title">GuardDuty Threat Detection &amp; Auto-Remediation</h2>
-      </div>
-      <button class="modal-close" aria-label="Close">&times;</button>
-    </div>
-
-    <div class="diag-wrap">
-      <div class="diag-title">Architecture Diagram</div>
-      <div class="diag">
-        <!-- Detection pipeline -->
-        <div class="diag-row">
-          <div class="diag-node sec">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>Amazon<br>GuardDuty</span>
-          </div>
-          <div class="diag-arr">→</div>
-          <div class="diag-node int">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            <span>Amazon<br>EventBridge</span>
-          </div>
-          <div class="diag-arr">→</div>
-          <div class="diag-node comp">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
-            <span>AWS<br>Lambda</span>
-          </div>
-        </div>
-
-        <!-- Branch label -->
-        <div class="diag-branch-lbl">Lambda dispatches remediation actions:</div>
-
-        <!-- Remediation actions -->
-        <div class="diag-row diag-branches">
-          <div class="diag-node comp">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
-            <span>EC2<br>Quarantine</span>
-            <div class="diag-node-sub">Replace SG → zero-ingress</div>
-          </div>
-          <div class="diag-node sec">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
-            <span>IAM<br>Revocation</span>
-            <div class="diag-node-sub">Disable key + deny-all</div>
-          </div>
-          <div class="diag-node store">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-            <span>S3 + EBS<br>Forensics</span>
-            <div class="diag-node-sub">Snapshot before isolate</div>
-          </div>
-          <div class="diag-node int">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-            <span>SNS + Slack<br>Alert</span>
-            <div class="diag-node-sub">Dual-channel notify</div>
-          </div>
-        </div>
-
-        <div class="diag-legend">
-          <span class="dl sec">Security</span>
-          <span class="dl comp">Compute</span>
-          <span class="dl store">Storage</span>
-          <span class="dl int">Integration</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal-body">
-      <div class="modal-desc">
-        <h3>How it works</h3>
-        <p>GuardDuty monitors VPC flow logs, DNS logs, and CloudTrail events continuously. When it publishes a finding, EventBridge routes it to a Lambda function that executes automated containment — no human in the loop.</p>
-        <ul class="modal-ul">
-          <li>EC2 isolation: all attached security groups replaced with a zero-ingress/zero-egress quarantine SG</li>
-          <li>IAM revocation: access key disabled + deny-all inline policy attached to the user/role</li>
-          <li>Forensic EBS snapshots created <em>before</em> isolation, tagged with finding ID and timestamp</li>
-          <li>Findings stored in KMS-encrypted S3 for long-term audit and IR use</li>
-          <li>Severity threshold and per-action feature flags — all independently togglable via env vars</li>
-          <li>Threat simulation toolkit included to generate real GuardDuty findings for end-to-end testing</li>
-        </ul>
-      </div>
-      <div class="modal-meta">
-        <div class="meta-item"><span class="meta-k">Monthly cost</span><span class="meta-v">~$2 / mo</span></div>
-        <div class="meta-item"><span class="meta-k">Tests passing</span><span class="meta-v">73</span></div>
-        <div class="modal-tags">
-          <span class="tag t-sec">GuardDuty</span><span class="tag t-int">EventBridge</span>
-          <span class="tag t-comp">Lambda</span><span class="tag t-comp">EC2</span>
-          <span class="tag t-sec">IAM</span><span class="tag t-sec">KMS</span>
-          <span class="tag t-store">S3</span><span class="tag t-int">SNS</span>
-          <span class="tag t-iac">Terraform</span><span class="tag t-lang">Python 3.11</span>
-        </div>
-        <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/2%20-%20AWS_Guard_Duty" target="_blank" rel="noopener" class="btn btn-primary btn-full">View on GitHub →</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── MODAL 3: Inspector ────────────────────────────────────── -->
-<div class="modal" id="m-insp" role="dialog" aria-modal="true" aria-labelledby="m-insp-title">
-  <div class="modal-box">
-    <div class="modal-hdr">
-      <div class="modal-hdr-left">
-        <span class="modal-num">03</span>
-        <h2 id="m-insp-title">AWS Inspector v2 — CVE Scanning</h2>
-      </div>
-      <button class="modal-close" aria-label="Close">&times;</button>
-    </div>
-
-    <div class="diag-wrap">
-      <div class="diag-title">Architecture Diagram</div>
-      <div class="diag">
-        <div class="diag-row">
-          <div class="diag-group-h" style="--grp-color:#FF9900">
-            <div class="diag-group-h-label">EC2 Instance</div>
-            <div class="diag-node comp">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
-              <span>EC2</span>
+          <div class="project-sidebar">
+            <div class="cost-badge">
+              <span class="cost-label">Monthly cost (demo)</span>
+              <span class="cost-value">~$2 / mo</span>
             </div>
-            <div class="diag-node mgmt" style="margin-left:4px">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-              <span>SSM<br>Agent</span>
+            <div class="cost-badge">
+              <span class="cost-label">Test coverage</span>
+              <span class="cost-value">73 passing</span>
+            </div>
+            <div class="cost-badge">
+              <span class="cost-label">Key technique</span>
+              <span class="cost-value" style="font-size:12px; color: var(--blue);">moto AWS mocking</span>
+            </div>
+            <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/2%20-%20AWS_Guard_Duty"
+               target="_blank" rel="noopener noreferrer"
+               class="btn btn-outline" style="width:100%; justify-content:center;">
+              View on GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 1 — VPC -->
+        <article class="project-card fade-in delay-1">
+          <div class="project-header">
+            <div class="project-number">01</div>
+            <div class="project-title">
+              <small>Foundation</small>
+              AWS Secure VPC
             </div>
           </div>
-          <div class="diag-arr">→</div>
-          <div class="diag-node sec">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <span>Amazon<br>Inspector v2</span>
+          <p class="project-desc">
+            Production-hardened multi-AZ VPC with layered network controls and
+            real-time threat monitoring. The foundational network that all other
+            projects deploy into.
+          </p>
+          <ul class="project-highlights">
+            <li>Dual-layer firewall: stateless NACLs + stateful Security Group referencing</li>
+            <li>VPC Flow Logs split into accepted / rejected streams for faster queries</li>
+            <li>CloudWatch metric filters detecting SSH brute-force and port-scan patterns</li>
+            <li>Bastion host with SSH agent forwarding — private key never leaves engineer's machine</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag tag-aws">VPC</span>
+            <span class="tag tag-aws">EC2</span>
+            <span class="tag tag-aws">CloudWatch</span>
+            <span class="tag tag-aws">SNS</span>
+            <span class="tag tag-aws">Flow Logs</span>
+            <span class="tag tag-iac">Terraform</span>
           </div>
-          <div class="diag-arr">→</div>
-          <div class="diag-node int">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            <span>Amazon<br>EventBridge</span>
+          <div class="project-footer">
+            <span class="test-count">Infrastructure validated</span>
+            <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/1%20-%20AWS-Secure-VPC"
+               target="_blank" rel="noopener noreferrer"
+               class="project-link">View project</a>
           </div>
-          <div class="diag-arr">→</div>
-          <div class="diag-node comp">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
-            <span>AWS<br>Lambda</span>
-          </div>
-        </div>
+        </article>
 
-        <div class="diag-branch-lbl">Lambda response actions:</div>
-        <div class="diag-row diag-branches" style="justify-content:flex-start;padding-left:140px">
-          <div class="diag-node comp">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
-            <span>Tag EC2<br>Instance</span>
-            <div class="diag-node-sub">Severity, CVE ID, type</div>
-          </div>
-          <div class="diag-node int">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-            <span>SNS<br>Alert</span>
-            <div class="diag-node-sub">Team notification</div>
-          </div>
-        </div>
-
-        <div class="diag-note">No open ports required — Inspector communicates exclusively via SSM Agent</div>
-
-        <div class="diag-legend">
-          <span class="dl sec">Security</span>
-          <span class="dl comp">Compute</span>
-          <span class="dl mgmt">Management</span>
-          <span class="dl int">Integration</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal-body">
-      <div class="modal-desc">
-        <h3>How it works</h3>
-        <p>Inspector v2 continuously scans EC2 instances for CVEs by communicating through the pre-installed SSM Agent — no additional software, no open ports. Findings are published to EventBridge and routed to a Lambda function.</p>
-        <ul class="modal-ul">
-          <li>Inspector communicates via SSM Agent — zero network exposure to the scanner</li>
-          <li>Severity mapping across all 5 bands: CRITICAL, HIGH, MEDIUM, LOW, INFORMATIONAL</li>
-          <li>Max CVSS score extracted from multiple scoring vectors per finding</li>
-          <li>EC2 instances tagged with: severity, CVE ID, finding type, and last-scanned timestamp</li>
-          <li>EventBridge pattern filters on severity field to reduce Lambda invocations for low-risk findings</li>
-        </ul>
-      </div>
-      <div class="modal-meta">
-        <div class="meta-item"><span class="meta-k">Monthly cost</span><span class="meta-v">~$1 / mo</span></div>
-        <div class="meta-item"><span class="meta-k">Tests passing</span><span class="meta-v">27</span></div>
-        <div class="modal-tags">
-          <span class="tag t-sec">Inspector v2</span><span class="tag t-mgmt">SSM</span>
-          <span class="tag t-int">EventBridge</span><span class="tag t-comp">Lambda</span>
-          <span class="tag t-comp">EC2</span><span class="tag t-int">SNS</span>
-          <span class="tag t-iac">Terraform</span><span class="tag t-lang">Python 3.11</span>
-        </div>
-        <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/3%20-%20AWS_Inspector" target="_blank" rel="noopener" class="btn btn-primary btn-full">View on GitHub →</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── MODAL 4: WAF ──────────────────────────────────────────── -->
-<div class="modal" id="m-waf" role="dialog" aria-modal="true" aria-labelledby="m-waf-title">
-  <div class="modal-box">
-    <div class="modal-hdr">
-      <div class="modal-hdr-left">
-        <span class="modal-num">04</span>
-        <h2 id="m-waf-title">AWS WAF — Web Application Firewall</h2>
-      </div>
-      <button class="modal-close" aria-label="Close">&times;</button>
-    </div>
-
-    <div class="diag-wrap">
-      <div class="diag-title">Architecture Diagram</div>
-      <div class="diag">
-        <!-- Main request flow -->
-        <div class="diag-row">
-          <div class="diag-node" style="border-top-color:#64748b">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" color="#64748b"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            <span>Internet<br>Client</span>
-          </div>
-          <div class="diag-arr">→</div>
-
-          <!-- WAF box with rule list -->
-          <div class="diag-waf-wrap">
-            <div class="diag-node sec" style="min-width:110px">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-              <span>AWS WAFv2</span>
-            </div>
-            <div class="diag-rules">
-              <div class="diag-rule">① OWASP Common Rule Set</div>
-              <div class="diag-rule">② SQL Injection Rules</div>
-              <div class="diag-rule">③ Known Bad Inputs (Log4Shell, SSRF)</div>
-              <div class="diag-rule">④ Rate Limit — 2,000 req / 5 min / IP</div>
-              <div class="diag-rule">⑤ Custom IP Blocklist</div>
+        <!-- Project 4 — WAF -->
+        <article class="project-card fade-in delay-2">
+          <div class="project-header">
+            <div class="project-number">04</div>
+            <div class="project-title">
+              <small>Application Layer</small>
+              AWS WAF — Web Application Firewall
             </div>
           </div>
-          <div class="diag-arr">→</div>
-
-          <div class="diag-node net">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            <span>API Gateway<br>HTTP API</span>
+          <p class="project-desc">
+            WAFv2 protecting an API Gateway HTTP API with five managed rule groups.
+            Chose API Gateway over ALB to save ~$18/month — same WAF capability,
+            fraction of the cost.
+          </p>
+          <ul class="project-highlights">
+            <li>OWASP Core, SQLi, and Known Bad Inputs (Log4Shell / SSRF) rule groups</li>
+            <li>Per-IP rate limiting: 2,000 req / 5-minute window</li>
+            <li>Custom IP blocklist — operator-managed, zero downtime updates</li>
+            <li>CloudWatch WAF logging (vs Kinesis Firehose — saves ~$10/mo at demo volumes)</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag tag-aws">WAFv2</span>
+            <span class="tag tag-aws">API Gateway</span>
+            <span class="tag tag-aws">Lambda</span>
+            <span class="tag tag-aws">CloudWatch</span>
+            <span class="tag tag-iac">Terraform</span>
+            <span class="tag tag-test">33 tests</span>
           </div>
-          <div class="diag-arr">→</div>
-          <div class="diag-node comp">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
-            <span>AWS<br>Lambda</span>
+          <div class="project-footer">
+            <span class="test-count">33 rule-logic tests</span>
+            <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/4%20-%20AWS_WAF"
+               target="_blank" rel="noopener noreferrer"
+               class="project-link">View project</a>
           </div>
-        </div>
+        </article>
 
-        <!-- CloudWatch branch -->
-        <div class="diag-row" style="margin-top:12px;justify-content:flex-start;padding-left:180px">
-          <div class="diag-arr diag-arr-down">↓ WAF logs</div>
-          <div class="diag-node mgmt" style="margin-left:8px">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            <span>CloudWatch<br>Logs</span>
-          </div>
-        </div>
-
-        <div class="diag-note">API Gateway instead of ALB saves ~$18/month at demo scale with identical WAF capability</div>
-
-        <div class="diag-legend">
-          <span class="dl sec">Security</span>
-          <span class="dl net">Networking</span>
-          <span class="dl comp">Compute</span>
-          <span class="dl mgmt">Management</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal-body">
-      <div class="modal-desc">
-        <h3>How it works</h3>
-        <p>WAFv2 is associated with an API Gateway HTTP API stage. All inbound HTTP traffic passes through five layered rule groups before reaching Lambda. Requests that match a blocking rule are dropped with a 403 response; all rule matches are logged to CloudWatch.</p>
-        <ul class="modal-ul">
-          <li>AWSManagedRulesCommonRuleSet (NoUserAgent overridden to Count to prevent false positives)</li>
-          <li>AWSManagedRulesSQLiRuleSet — catches SQL injection in query strings, headers, and body</li>
-          <li>AWSManagedRulesKnownBadInputsRuleSet — blocks Log4Shell, SSRF, and path traversal payloads</li>
-          <li>Rate-based rule: 2,000 req per 5 minutes per IP — blocks after threshold, auto-unblocks</li>
-          <li>Custom IP blocklist managed via IPSet — updates take effect in &lt;1 minute, zero downtime</li>
-          <li>CloudWatch WAF logging chosen over Kinesis Firehose — saves ~$10/month at demo volumes</li>
-        </ul>
-      </div>
-      <div class="modal-meta">
-        <div class="meta-item"><span class="meta-k">Monthly cost</span><span class="meta-v">~$7 / mo</span></div>
-        <div class="meta-item"><span class="meta-k">Tests passing</span><span class="meta-v">33</span></div>
-        <div class="modal-tags">
-          <span class="tag t-sec">WAFv2</span><span class="tag t-net">API Gateway</span>
-          <span class="tag t-comp">Lambda</span><span class="tag t-mgmt">CloudWatch</span>
-          <span class="tag t-iac">Terraform</span><span class="tag t-lang">Python 3.11</span>
-        </div>
-        <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/4%20-%20AWS_WAF" target="_blank" rel="noopener" class="btn btn-primary btn-full">View on GitHub →</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── MODAL 5: Macie ────────────────────────────────────────── -->
-<div class="modal" id="m-macie" role="dialog" aria-modal="true" aria-labelledby="m-macie-title">
-  <div class="modal-box">
-    <div class="modal-hdr">
-      <div class="modal-hdr-left">
-        <span class="modal-num">05</span>
-        <h2 id="m-macie-title">AWS Macie + KMS — PII Classification</h2>
-      </div>
-      <button class="modal-close" aria-label="Close">&times;</button>
-    </div>
-
-    <div class="diag-wrap">
-      <div class="diag-title">Architecture Diagram</div>
-      <div class="diag">
-        <!-- Main pipeline -->
-        <div class="diag-row">
-          <div class="diag-node store">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-            <span>S3<br>Sensitive Data</span>
-          </div>
-          <div class="diag-arr">→</div>
-          <div class="diag-node sec">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6m-3-3h6"/></svg>
-            <span>Amazon<br>Macie v2</span>
-          </div>
-          <div class="diag-arr">→</div>
-          <div class="diag-node int">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            <span>Amazon<br>EventBridge</span>
-          </div>
-          <div class="diag-arr">→</div>
-          <div class="diag-node comp">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
-            <span>AWS<br>Lambda</span>
-          </div>
-        </div>
-
-        <div class="diag-branch-lbl">Lambda response actions:</div>
-        <div class="diag-row diag-branches">
-          <div class="diag-node store">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-            <span>S3<br>Quarantine</span>
-            <div class="diag-node-sub">Copy + delete original</div>
-          </div>
-          <div class="diag-node store">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-            <span>Tag<br>Objects</span>
-            <div class="diag-node-sub">MacieFinding, Severity</div>
-          </div>
-          <div class="diag-node int">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-            <span>SNS<br>Alert</span>
-            <div class="diag-node-sub">PII type + actions taken</div>
-          </div>
-        </div>
-
-        <!-- KMS layer -->
-        <div class="diag-kms-row">
-          <div class="diag-node sec" style="min-width:120px">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
-            <span>KMS CMK<br>(auto-rotation)</span>
-          </div>
-          <div class="diag-kms-line">
-            <span class="diag-kms-label">Encrypts all S3 buckets</span>
-          </div>
-        </div>
-
-        <div class="diag-note">Custom identifiers: AWS account numbers (\b\d{12}\b) and Employee IDs (EMP-\d{6})</div>
-
-        <div class="diag-legend">
-          <span class="dl sec">Security</span>
-          <span class="dl store">Storage</span>
-          <span class="dl comp">Compute</span>
-          <span class="dl int">Integration</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal-body">
-      <div class="modal-desc">
-        <h3>How it works</h3>
-        <p>Macie runs weekly scheduled classification jobs against a sensitive-data S3 bucket using built-in PII detectors and two custom identifiers. When a finding is published, EventBridge routes it to Lambda which quarantines the object and fires an alert.</p>
-        <ul class="modal-ul">
-          <li>Weekly scheduled scans (not continuous) — ~10× cheaper than continuous monitoring at scale</li>
-          <li>Custom identifiers: AWS account numbers and internal employee IDs (patterns Macie's built-ins miss)</li>
-          <li>Quarantine: <code>CopyObject</code> to isolated bucket → <code>DeleteObject</code> from source — atomic, no data loss</li>
-          <li>Quarantine bucket lifecycle: Glacier transition at 90 days for cost-effective long-term retention</li>
-          <li>Single rotating KMS CMK for all 4 buckets: $1/month vs $4/month with one-per-bucket</li>
-          <li>Severity threshold gate on all actions — low-severity findings are logged only</li>
-        </ul>
-      </div>
-      <div class="modal-meta">
-        <div class="meta-item"><span class="meta-k">Monthly cost</span><span class="meta-v">~$1 / mo</span></div>
-        <div class="meta-item"><span class="meta-k">Tests passing</span><span class="meta-v">36</span></div>
-        <div class="modal-tags">
-          <span class="tag t-sec">Macie v2</span><span class="tag t-sec">KMS</span>
-          <span class="tag t-store">S3</span><span class="tag t-comp">Lambda</span>
-          <span class="tag t-int">EventBridge</span><span class="tag t-int">SNS</span>
-          <span class="tag t-iac">Terraform</span><span class="tag t-lang">Python 3.11</span>
-        </div>
-        <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/5%20-%20AWS_Macie_KMS" target="_blank" rel="noopener" class="btn btn-primary btn-full">View on GitHub →</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ── MODAL 6: IAM ──────────────────────────────────────────── -->
-<div class="modal" id="m-iam" role="dialog" aria-modal="true" aria-labelledby="m-iam-title">
-  <div class="modal-box">
-    <div class="modal-hdr">
-      <div class="modal-hdr-left">
-        <span class="modal-num">06</span>
-        <h2 id="m-iam-title">AWS IAM Security Lab <span class="collab-badge">Collaboration</span></h2>
-      </div>
-      <button class="modal-close" aria-label="Close">&times;</button>
-    </div>
-
-    <div class="diag-wrap">
-      <div class="diag-title">Architecture Diagram</div>
-      <div class="diag">
-        <!-- Org / account control plane -->
-        <div class="diag-group" style="--grp-color:#DD344C">
-          <div class="diag-group-label">AWS Organizations — Control Plane</div>
-          <div class="diag-row" style="flex-wrap:wrap">
-            <div class="diag-node sec">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M17.5 14v6m-3-3h6"/></svg>
-              <span>AWS<br>Organizations</span>
-            </div>
-            <div class="diag-arr">→</div>
-            <div class="diag-node sec">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-              <span>Service Control<br>Policies (SCPs)</span>
-            </div>
-            <div class="diag-arr">→</div>
-            <div class="diag-node sec">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-              <span>Member<br>Accounts</span>
+        <!-- Project 3 — Inspector -->
+        <article class="project-card fade-in delay-1">
+          <div class="project-header">
+            <div class="project-number">03</div>
+            <div class="project-title">
+              <small>Vulnerability Management</small>
+              AWS Inspector v2 — CVE Scanning
             </div>
           </div>
-        </div>
+          <p class="project-desc">
+            Continuous EC2 vulnerability scanning via SSM Agent — no open ports,
+            no manual installs. HIGH and CRITICAL findings route to Lambda for
+            automated tagging and alerting.
+          </p>
+          <ul class="project-highlights">
+            <li>Inspector v2 communicates via SSM Agent (agentless from the operator's perspective)</li>
+            <li>Tags affected instances: severity, CVE ID, finding type, last-scanned timestamp</li>
+            <li>Severity label mapping across all 5 bands (CRITICAL → INFORMATIONAL)</li>
+            <li>Max CVSS score extracted from multiple scoring vectors per finding</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag tag-aws">Inspector v2</span>
+            <span class="tag tag-aws">SSM</span>
+            <span class="tag tag-aws">EventBridge</span>
+            <span class="tag tag-aws">Lambda</span>
+            <span class="tag tag-aws">SNS</span>
+            <span class="tag tag-iac">Terraform</span>
+            <span class="tag tag-lang">Python 3.11</span>
+            <span class="tag tag-test">27 tests</span>
+          </div>
+          <div class="project-footer">
+            <span class="test-count">27 unit tests</span>
+            <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/3%20-%20AWS_Inspector"
+               target="_blank" rel="noopener noreferrer"
+               class="project-link">View project</a>
+          </div>
+        </article>
 
-        <!-- IAM identity plane -->
-        <div class="diag-group" style="--grp-color:#DD344C;margin-top:12px">
-          <div class="diag-group-label">IAM Identity Plane</div>
-          <div class="diag-row" style="flex-wrap:wrap">
-            <div class="diag-node sec">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              <span>IAM<br>Users / Roles</span>
+        <!-- Project 5 — Macie + KMS -->
+        <article class="project-card fade-in delay-2">
+          <div class="project-header">
+            <div class="project-number">05</div>
+            <div class="project-title">
+              <small>Data Security</small>
+              AWS Macie + KMS — PII Classification
             </div>
-            <div class="diag-arr">→</div>
-            <div class="diag-node sec">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              <span>Permission<br>Boundaries</span>
-            </div>
-            <div class="diag-arr">→</div>
-            <div class="diag-node sec">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-              <span>Least-Privilege<br>Policies</span>
-            </div>
+          </div>
+          <p class="project-desc">
+            Automated PII discovery and quarantine for S3 data. Macie runs weekly
+            classification jobs; Lambda quarantines flagged objects by copying to
+            an isolated bucket and deleting the original.
+          </p>
+          <ul class="project-highlights">
+            <li>Weekly scheduled scans (not continuous — ~10× cheaper at scale)</li>
+            <li>Custom identifiers: AWS account numbers, internal employee IDs</li>
+            <li>Quarantine: copy to isolated bucket → delete original → tag with finding metadata</li>
+            <li>Single rotating KMS CMK shared across all S3 buckets ($1/mo vs $4/mo)</li>
+          </ul>
+          <div class="project-tags">
+            <span class="tag tag-aws">Macie v2</span>
+            <span class="tag tag-aws">KMS</span>
+            <span class="tag tag-aws">S3</span>
+            <span class="tag tag-aws">Lambda</span>
+            <span class="tag tag-aws">EventBridge</span>
+            <span class="tag tag-iac">Terraform</span>
+            <span class="tag tag-lang">Python 3.11</span>
+            <span class="tag tag-test">36 tests</span>
+          </div>
+          <div class="project-footer">
+            <span class="test-count">36 unit tests</span>
+            <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio/tree/main/5%20-%20AWS_Macie_KMS"
+               target="_blank" rel="noopener noreferrer"
+               class="project-link">View project</a>
+          </div>
+        </article>
+
+      </div><!-- /projects-grid -->
+    </div>
+  </section>
+
+  <!-- ── SKILLS ─────────────────────────────────────────── -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label">Expertise</span>
+        <h2 class="section-title">Skills</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group fade-in delay-1">
+          <div class="skill-group-header">
+            <span class="skill-group-icon">🛡️</span>
+            <h3>AWS Security Services</h3>
+          </div>
+          <div class="skill-chips">
+            <span class="skill-chip">GuardDuty</span>
+            <span class="skill-chip">Inspector v2</span>
+            <span class="skill-chip">Macie v2</span>
+            <span class="skill-chip">WAFv2</span>
+            <span class="skill-chip">KMS</span>
+            <span class="skill-chip">IAM</span>
+            <span class="skill-chip">Security Hub</span>
+            <span class="skill-chip">CloudTrail</span>
+            <span class="skill-chip">VPC Flow Logs</span>
+            <span class="skill-chip">SSM</span>
           </div>
         </div>
-
-        <!-- Audit trail -->
-        <div class="diag-row" style="margin-top:12px;justify-content:flex-start;gap:8px">
-          <div class="diag-node mgmt">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>CloudTrail<br>Audit Log</span>
+        <div class="skill-group fade-in delay-2">
+          <div class="skill-group-header">
+            <span class="skill-group-icon">⚙️</span>
+            <h3>Cloud Infrastructure</h3>
           </div>
-          <div class="diag-arr">→</div>
-          <div class="diag-node mgmt">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-            <span>CloudWatch<br>Alarms</span>
-          </div>
-          <div class="diag-arr">→</div>
-          <div class="diag-node int">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-            <span>SNS<br>Alerts</span>
+          <div class="skill-chips">
+            <span class="skill-chip">Terraform</span>
+            <span class="skill-chip">EventBridge</span>
+            <span class="skill-chip">Lambda</span>
+            <span class="skill-chip">API Gateway</span>
+            <span class="skill-chip">CloudWatch</span>
+            <span class="skill-chip">S3</span>
+            <span class="skill-chip">EC2</span>
+            <span class="skill-chip">SNS</span>
+            <span class="skill-chip">VPC</span>
+            <span class="skill-chip">GitHub Actions</span>
           </div>
         </div>
-
-        <div class="diag-legend">
-          <span class="dl sec">Security / IAM</span>
-          <span class="dl mgmt">Management</span>
-          <span class="dl int">Integration</span>
+        <div class="skill-group fade-in delay-3">
+          <div class="skill-group-header">
+            <span class="skill-group-icon">🔒</span>
+            <h3>Security Practices</h3>
+          </div>
+          <div class="skill-chips">
+            <span class="skill-chip">Threat Detection</span>
+            <span class="skill-chip">Auto-Remediation</span>
+            <span class="skill-chip">Defense in Depth</span>
+            <span class="skill-chip">Vulnerability Management</span>
+            <span class="skill-chip">PII Classification</span>
+            <span class="skill-chip">Incident Response</span>
+            <span class="skill-chip">Least Privilege IAM</span>
+            <span class="skill-chip">Forensic Imaging</span>
+            <span class="skill-chip">CIS Benchmarks</span>
+          </div>
+        </div>
+        <div class="skill-group fade-in delay-4">
+          <div class="skill-group-header">
+            <span class="skill-group-icon">🧪</span>
+            <h3>Development &amp; Testing</h3>
+          </div>
+          <div class="skill-chips">
+            <span class="skill-chip">Python 3.11</span>
+            <span class="skill-chip">pytest</span>
+            <span class="skill-chip">moto (AWS mocking)</span>
+            <span class="skill-chip">unittest.mock</span>
+            <span class="skill-chip">boto3</span>
+            <span class="skill-chip">Git</span>
+            <span class="skill-chip">CI/CD</span>
+            <span class="skill-chip">bash</span>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="modal-body">
-      <div class="modal-desc">
-        <h3>About the project</h3>
-        <p>A collaborative IAM security lab built with <a href="https://github.com/SamsonIdowu" target="_blank" rel="noopener">SamsonIdowu</a>, exploring multi-account IAM controls on AWS. Focuses on the principle of least privilege applied at every layer of the AWS access control model.</p>
-        <ul class="modal-ul">
-          <li>Service Control Policies (SCPs) enforced at the AWS Organizations level — denials that no account-level policy can override</li>
-          <li>IAM Permission Boundaries limit the maximum permissions any role or user can grant themselves</li>
-          <li>Least-privilege IAM policies scoped to specific resources and conditions (aws:RequestedRegion, aws:PrincipalTag)</li>
-          <li>IAM roles with explicit deny statements for high-risk API calls (DeleteBucket, StopLogging, etc.)</li>
-          <li>CloudTrail + CloudWatch alarms for unauthorized API call detection</li>
-          <li>Co-authored with <a href="https://github.com/SamsonIdowu" target="_blank" rel="noopener">SamsonIdowu</a> at Innopolis University</li>
-        </ul>
-      </div>
-      <div class="modal-meta">
-        <div class="meta-item"><span class="meta-k">Type</span><span class="meta-v">Collaboration</span></div>
-        <div class="meta-item"><span class="meta-k">Scope</span><span class="meta-v">Multi-account</span></div>
-        <div class="modal-tags">
-          <span class="tag t-sec">IAM</span><span class="tag t-sec">Organizations</span>
-          <span class="tag t-sec">SCPs</span><span class="tag t-sec">CloudTrail</span>
-          <span class="tag t-iac">Terraform</span>
+  <!-- ── CONTACT ────────────────────────────────────────── -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="section-header fade-in">
+          <span class="section-label">Get in touch</span>
+          <h2 class="section-title">Let's talk security</h2>
+          <p class="section-desc">
+            Looking for Cloud Security Engineer roles focused on AWS.
+            Open to roles in Calgary, remote Canada, or remote EU.
+          </p>
         </div>
-        <a href="https://github.com/SNE22-INNOPOLIS/AWS-IAM" target="_blank" rel="noopener" class="btn btn-primary btn-full">View on GitHub →</a>
-        <a href="https://github.com/SamsonIdowu" target="_blank" rel="noopener" class="btn btn-outline btn-full" style="margin-top:8px">Co-author: SamsonIdowu →</a>
+
+        <blockquote class="contact-tagline fade-in delay-1">
+          "The best security automation is the one that acts before a human
+          even reads the alert — and leaves an audit trail proving it did the right thing."
+        </blockquote>
+
+        <div class="contact-links fade-in delay-2">
+          <a href="mailto:rollymk25@gmail.com" class="contact-item">
+            <span class="contact-item-icon">✉️</span>
+            rollymk25@gmail.com
+          </a>
+          <a href="https://www.linkedin.com/in/rolly-mougoue/"
+             target="_blank" rel="noopener noreferrer"
+             class="contact-item">
+            <span class="contact-item-icon">💼</span>
+            linkedin.com/in/rolly-mougoue
+          </a>
+          <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio"
+             target="_blank" rel="noopener noreferrer"
+             class="contact-item">
+            <span class="contact-item-icon">⌨️</span>
+            github.com/Rolly-M
+          </a>
+        </div>
+
+        <div class="fade-in delay-3">
+          <span class="availability">Available for new roles</span>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<script src="js/main.js"></script>
+  <!-- ── FOOTER ─────────────────────────────────────────── -->
+  <footer>
+    <div class="container footer-inner">
+      <p class="footer-left">
+        Built by <span>Rolly Mougoue</span> · All infrastructure is Terraform · All tests run in CI
+      </p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Rolly-M/Cloud-Security-Portfolio"
+               target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/rolly-mougoue/"
+               target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="mailto:rollymk25@gmail.com">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
