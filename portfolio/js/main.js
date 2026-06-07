@@ -1,6 +1,6 @@
 'use strict';
 
-// ── Nav scroll effect ───────────────────────────────────────
+// ── Navigation scroll effect ────────────────────────────────
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 20);
@@ -12,57 +12,77 @@ const navLinks  = document.getElementById('nav-links');
 
 navToggle.addEventListener('click', () => {
   navLinks.classList.toggle('open');
-  navToggle.setAttribute('aria-expanded', navLinks.classList.contains('open'));
+  const isOpen = navLinks.classList.contains('open');
+  navToggle.setAttribute('aria-expanded', isOpen);
 });
-navLinks.querySelectorAll('a').forEach(a =>
-  a.addEventListener('click', () => navLinks.classList.remove('open'))
-);
 
-// ── Modal logic ──────────────────────────────────────────────
-function openModal(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.style.display = 'flex';
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => el.classList.add('visible'));
+// Close mobile nav on link click
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => navLinks.classList.remove('open'));
+});
+
+// ── Animated stat counters ──────────────────────────────────
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target, 10);
+  const duration = 1800;
+  const startTime = performance.now();
+
+  function step(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // Ease out cubic
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(eased * target);
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(step);
+}
+
+// ── IntersectionObserver for fade-in + counter trigger ─────
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('visible');
+
+    // Trigger counter if it's a stat number
+    const counters = entry.target.querySelectorAll
+      ? entry.target.querySelectorAll('[data-target]')
+      : [];
+    counters.forEach(animateCounter);
+
+    io.unobserve(entry.target);
   });
-  document.body.style.overflow = 'hidden';
-  el.querySelector('.modal-close').focus();
-}
+}, { threshold: 0.15 });
 
-function closeModal(id) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  el.classList.remove('visible');
-  el.addEventListener('transitionend', () => {
-    el.style.display = 'none';
-    document.body.style.overflow = '';
-  }, { once: true });
-}
+// Observe all fade-in elements and the stats bar
+document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
 
-// Close on backdrop click
-document.querySelectorAll('.modal').forEach(m => {
-  m.addEventListener('click', e => { if (e.target === m) closeModal(m.id); });
-});
+const statsBar = document.querySelector('.stats-bar');
+if (statsBar) io.observe(statsBar);
 
-// Close buttons
-document.querySelectorAll('.modal-close').forEach(btn => {
-  btn.addEventListener('click', () => closeModal(btn.closest('.modal').id));
-});
+// ── Active nav link on scroll ───────────────────────────────
+const sections = document.querySelectorAll('section[id]');
+const navAnchors = document.querySelectorAll('.nav-links a');
 
-// Escape key
-document.addEventListener('keydown', e => {
-  if (e.key !== 'Escape') return;
-  const open = document.querySelector('.modal.visible');
-  if (open) closeModal(open.id);
-});
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navAnchors.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current
+      ? 'var(--text-primary)'
+      : '';
+  });
+}, { passive: true });
 
-// Keyboard activation for cards (Enter / Space)
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      card.click();
+// ── Trigger fade-in for elements already in viewport ───────
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.fade-in').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      el.classList.add('visible');
     }
   });
 });
