@@ -1,2 +1,7 @@
-# Serve index.html for all routes (single-page navigation)
-/*    /index.html   200
+# Clean URL routing for multi-page site
+/about      /about.html    200
+/projects   /projects.html 200
+/contact    /contact.html  200
+
+# Fallback
+/*          /index.html    200
