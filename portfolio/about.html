@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Rolly Mougoue — Cloud Security Engineer focused on AWS security automation, Terraform IaC, and DevSecOps.">
+  <title>About — Rolly Mougoue</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="starfield" aria-hidden="true"></div>
+
+  <!-- ── Navigation ─────────────────────────────────────────── -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Home">
+        <div class="nav-logo-box" aria-hidden="true">RM</div>
+        ROLLY
+      </a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="projects.html">PROJECTS &amp; EXP</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle"
+              aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── About ──────────────────────────────────────────────── -->
+  <main class="page-content page-enter" style="padding-top:66px;">
+    <section class="page-section">
+      <div class="container">
+        <div class="about-grid">
+
+          <!-- Left — Bio -->
+          <div class="about-bio fade-in">
+            <h2 class="about-heading">
+              I design and automate the security controls<br>
+              that keep cloud infrastructure safe — at scale.
+            </h2>
+
+            <p>
+              I'm a <strong>Cloud Security Engineer</strong> focused on AWS-native security automation.
+              Every project in this portfolio is fully deployed with Terraform, backed by
+              unit tests that run without AWS credentials, and designed to reflect real
+              security engineering work — not tutorial walkthroughs.
+            </p>
+            <p>
+              My approach: <strong>automate the response, not just the detection.</strong>
+              When GuardDuty flags a compromised instance, a Lambda isolates it in seconds.
+              When Macie finds PII in an S3 bucket, another Lambda quarantines the object
+              before a human even reads the alert.
+            </p>
+            <p>
+              I've built layered security controls across networking (VPC, NACLs, WAFv2),
+              identity (IAM, SCPs, permission boundaries), detection (GuardDuty, Inspector v2,
+              Macie), and automated response (EventBridge → Lambda pipelines) — all managed
+              as reproducible Infrastructure as Code.
+            </p>
+            <p>
+              I hold the <strong>AWS Solutions Architect – Associate</strong>,
+              <strong>ISC2 Certified in Cybersecurity</strong>, and
+              <strong>CompTIA CySA+</strong> certifications, and I'm targeting
+              the AWS Security Specialty next.
+            </p>
+
+            <div class="about-actions">
+              <a href="projects.html" class="btn btn-primary">View My Projects</a>
+              <a href="contact.html" class="btn btn-outline">Get In Touch</a>
+              <a href="mailto:rollymk25@gmail.com" class="btn btn-ghost">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Email Me
+              </a>
+            </div>
+          </div>
+
+          <!-- Right — Sidebar -->
+          <div class="about-sidebar fade-in d2">
+
+            <!-- Quick Facts -->
+            <div class="sidebar-box">
+              <h3 class="sidebar-title">Quick Facts</h3>
+              <table class="facts-table">
+                <tbody>
+                  <tr>
+                    <td>Education</td>
+                    <td>Computer Science</td>
+                  </tr>
+                  <tr>
+                    <td>Focus</td>
+                    <td>Cloud Security</td>
+                  </tr>
+                  <tr>
+                    <td>Key Tech</td>
+                    <td>AWS, Terraform, Python</td>
+                  </tr>
+                  <tr>
+                    <td>Location</td>
+                    <td>Calgary, AB</td>
+                  </tr>
+                  <tr>
+                    <td>Availability</td>
+                    <td>
+                      <div class="avail-cell">
+                        <div class="avail-dot"></div>
+                        Open to Opportunities
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Certifications -->
+            <div class="sidebar-box">
+              <h3 class="sidebar-title">Certifications</h3>
+              <div class="cert-row">
+                <span class="cert-name">AWS Solutions Architect</span>
+                <span class="cert-date">Associate</span>
+              </div>
+              <div class="cert-row">
+                <span class="cert-name">ISC2 Certified in Cybersecurity</span>
+                <span class="cert-date">CC</span>
+              </div>
+              <div class="cert-row">
+                <span class="cert-name">CompTIA CySA+</span>
+                <span class="cert-date">Analyst</span>
+              </div>
+              <div class="cert-row">
+                <span class="cert-name">AWS Security Specialty</span>
+                <span class="cert-date" style="color:var(--accent);opacity:.7">In Progress</span>
+              </div>
+            </div>
+
+            <!-- Key approach -->
+            <div class="sidebar-box">
+              <h3 class="sidebar-title">Engineering Principles</h3>
+              <div class="cert-row">
+                <span class="cert-name">Defense in Depth</span>
+              </div>
+              <div class="cert-row">
+                <span class="cert-name">Infrastructure as Code</span>
+              </div>
+              <div class="cert-row">
+                <span class="cert-name">Tested Remediation Logic</span>
+              </div>
+              <div class="cert-row">
+                <span class="cert-name">Least Privilege IAM</span>
+              </div>
+              <div class="cert-row">
+                <span class="cert-name">Cost-Conscious Design</span>
+              </div>
+            </div>
+
+          </div><!-- /sidebar -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer>
+    <div class="container footer-inner">
+      <p class="footer-copy">Rolly Mougoue · Cloud Security Engineer · Calgary, AB</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/Rolly-M/Cloud-Security-Portfolio"
+               target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/rolly-mougoue/"
+               target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="mailto:rollymk25@gmail.com">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
