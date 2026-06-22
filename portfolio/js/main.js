@@ -217,13 +217,13 @@ document.addEventListener('DOMContentLoaded', function () {
 /* ── Animated counters ───────────────────────────────────────── */
 function animateCounter(el) {
   var target = parseInt(el.dataset.target, 10);
+  var suffix = el.dataset.suffix || '';
   var dur = 1600, startTime = performance.now();
   (function step(now) {
     var p = Math.min((now - startTime) / dur, 1);
     var eased = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.floor(eased * target);
+    el.textContent = Math.floor(eased * target) + (p < 1 ? '' : suffix);
     if (p < 1) requestAnimationFrame(step);
-    else el.textContent = target;
   })(startTime);
 }
 
@@ -235,5 +235,6 @@ var counterObs = new IntersectionObserver(function (entries) {
   });
 }, { threshold: 0.2 });
 
-var statsRow = document.querySelector('.stats-row');
-if (statsRow) counterObs.observe(statsRow);
+document.querySelectorAll('.stats-row, .metrics-grid').forEach(function (el) {
+  counterObs.observe(el);
+});
