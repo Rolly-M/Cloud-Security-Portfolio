@@ -11,7 +11,7 @@
 </head>
 <body>
 
-  <div id="starfield" aria-hidden="true"></div>
+  <canvas id="starfield-canvas" aria-hidden="true"></canvas>
 
   <!-- ── Navigation ─────────────────────────────────────────── -->
   <nav class="nav" role="navigation" aria-label="Main navigation">
@@ -78,6 +78,7 @@
 
         <!-- Right — Photo -->
         <div class="hero-photo" aria-label="Profile photo">
+          <div class="photo-glow" aria-hidden="true"></div>
           <div class="photo-ring" aria-hidden="true"></div>
           <div class="photo-inner">
             <img id="profile-img" src="images/profile.jpg" alt="Rolly Mougoue">
