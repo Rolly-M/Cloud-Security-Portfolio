@@ -218,23 +218,40 @@ document.addEventListener('DOMContentLoaded', function () {
 function animateCounter(el) {
   var target = parseInt(el.dataset.target, 10);
   var suffix = el.dataset.suffix || '';
-  var dur = 1600, startTime = performance.now();
-  (function step(now) {
-    var p = Math.min((now - startTime) / dur, 1);
+  var dur = 1600;
+  var startTime = null;
+  function step(ts) {
+    if (!startTime) startTime = ts;
+    var p = Math.min((ts - startTime) / dur, 1);
     var eased = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.floor(eased * target) + (p < 1 ? '' : suffix);
+    el.textContent = Math.round(eased * target) + (p >= 1 ? suffix : '');
     if (p < 1) requestAnimationFrame(step);
-  })(startTime);
+  }
+  requestAnimationFrame(step);
 }
 
 var counterObs = new IntersectionObserver(function (entries) {
   entries.forEach(function (e) {
     if (!e.isIntersecting) return;
-    e.target.querySelectorAll('[data-target]').forEach(animateCounter);
+    animateCounter(e.target);
     counterObs.unobserve(e.target);
   });
-}, { threshold: 0.2 });
+}, { threshold: 0 });
 
-document.querySelectorAll('.stats-row, .metrics-grid').forEach(function (el) {
+document.querySelectorAll('[data-target]').forEach(function (el) {
   counterObs.observe(el);
+});
+
+/* ── Skill bar animation ─────────────────────────────────────── */
+var barObs = new IntersectionObserver(function (entries) {
+  entries.forEach(function (e) {
+    if (!e.isIntersecting) return;
+    var pct = e.target.dataset.pct;
+    if (pct) e.target.style.width = pct + '%';
+    barObs.unobserve(e.target);
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.skill-fill').forEach(function (el) {
+  barObs.observe(el);
 });
