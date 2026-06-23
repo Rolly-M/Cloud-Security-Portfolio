@@ -242,6 +242,37 @@ document.querySelectorAll('[data-target]').forEach(function (el) {
   counterObs.observe(el);
 });
 
+/* ── Copy buttons (contact page) ────────────────────────────── */
+document.querySelectorAll('.ci-copy').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var text = btn.dataset.copy;
+    if (!text) return;
+    navigator.clipboard.writeText(text).then(function () {
+      var orig = btn.innerHTML;
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+      setTimeout(function () { btn.innerHTML = orig; }, 1500);
+    });
+  });
+});
+
+/* ── Contact form success state ──────────────────────────────── */
+(function () {
+  var form = document.getElementById('contact-form');
+  var success = document.getElementById('form-success');
+  if (!form || !success) return;
+  if (window.location.search.indexOf('success') !== -1) {
+    form.hidden = true;
+    success.hidden = false;
+  }
+  form.addEventListener('submit', function (e) {
+    var btn = form.querySelector('.btn-send');
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+    }
+  });
+})();
+
 /* ── Skill bar animation ─────────────────────────────────────── */
 var barObs = new IntersectionObserver(function (entries) {
   entries.forEach(function (e) {
