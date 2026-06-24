@@ -1,5 +1,19 @@
 'use strict';
 
+/* ── Service Worker — auto-clear cache on deploy ─────────────── */
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(function (reg) {
+    reg.addEventListener('updatefound', function () {
+      var incoming = reg.installing;
+      incoming.addEventListener('statechange', function () {
+        if (incoming.state === 'activated' && navigator.serviceWorker.controller) {
+          window.location.reload();
+        }
+      });
+    });
+  });
+}
+
 /* ── Flying Star Canvas ─────────────────────────────────────── */
 (function () {
   var canvas = document.getElementById('starfield-canvas');
