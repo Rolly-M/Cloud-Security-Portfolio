@@ -1,5 +1,9 @@
 [build]
   publish = "portfolio"
+  command  = ""
+
+[build.environment]
+  NODE_VERSION = "18"
 
 [[headers]]
   for = "/*"
