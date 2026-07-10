@@ -2,17 +2,21 @@
 
 const CACHE = 'rm-portfolio-v1';
 
-/* Install — skip waiting so new SW activates immediately */
-self.addEventListener('install', () => self.skipWaiting());
+/* Install — cache assets, then wait for existing SW to retire */
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll([
+    '/', '/index.html', '/about.html', '/projects.html', '/contact.html',
+    '/css/style.css', '/js/main.js'
+  ])));
+});
 
-/* Activate — delete every old cache, claim all clients */
+/* Activate — delete old caches */
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys()
       .then(keys => Promise.all(
         keys.filter(k => k !== CACHE).map(k => caches.delete(k))
       ))
-      .then(() => self.clients.claim())
   );
 });
 

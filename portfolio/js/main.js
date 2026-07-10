@@ -2,16 +2,7 @@
 
 /* ── Service Worker — auto-clear cache on deploy ─────────────── */
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').then(function (reg) {
-    reg.addEventListener('updatefound', function () {
-      var incoming = reg.installing;
-      incoming.addEventListener('statechange', function () {
-        if (incoming.state === 'activated' && navigator.serviceWorker.controller) {
-          window.location.reload();
-        }
-      });
-    });
-  });
+  navigator.serviceWorker.register('/sw.js');
 }
 
 /* ── Flying Star Canvas ─────────────────────────────────────── */
