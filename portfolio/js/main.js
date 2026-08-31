@@ -292,6 +292,18 @@ document.querySelectorAll('.skill-fill').forEach(function (el) {
   barObs.observe(el);
 });
 
+/* ── Page-view ping ──────────────────────────────────────────── */
+(function () {
+  /* Replace with the visit_endpoint output from terraform apply.
+     e.g. 'https://abc123.execute-api.ca-central-1.amazonaws.com/visit'
+     Leave as '' to disable tracking. */
+  var VISIT_URL = '';
+  if (!VISIT_URL) return;
+  /* keepalive: true ensures the request completes even if the user
+     navigates away immediately after the page loads. */
+  fetch(VISIT_URL, { method: 'POST', keepalive: true }).catch(function () {});
+})();
+
 /* ── Live AWS Telemetry Widget ───────────────────────────────── */
 (function () {
   /* Replace with your API Gateway endpoint once deployed.

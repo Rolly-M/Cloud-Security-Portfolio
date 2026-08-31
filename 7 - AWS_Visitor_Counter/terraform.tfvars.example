@@ -1,0 +1,7 @@
+# Copy to terraform.tfvars and adjust as needed.
+# terraform.tfvars is gitignored — safe to store real values there.
+
+aws_region       = "ca-central-1"
+project_name     = "portfolio-visitor-counter"
+table_name       = "portfolio-visits"
+portfolio_origin = "https://rollymougoue.netlify.app"
