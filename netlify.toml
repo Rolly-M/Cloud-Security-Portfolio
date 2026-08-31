@@ -9,7 +9,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://img.shields.io https://raw.githubusercontent.com; font-src 'self'; connect-src 'none'; frame-ancestors 'none';"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://img.shields.io https://raw.githubusercontent.com; font-src 'self'; connect-src 'self' https://*.execute-api.ca-central-1.amazonaws.com; frame-ancestors 'none';"
 
 [[headers]]
   for = "/*.html"

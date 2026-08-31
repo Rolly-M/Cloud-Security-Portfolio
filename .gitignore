@@ -11,3 +11,4 @@ build/
 *.tfstate.backup
 .terraform.lock.hcl
 *.zip
+.build/
