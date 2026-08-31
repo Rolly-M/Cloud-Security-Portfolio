@@ -304,7 +304,7 @@ document.querySelectorAll('.skill-fill').forEach(function (el) {
   /* Replace with the visit_endpoint output from terraform apply.
      e.g. 'https://abc123.execute-api.ca-central-1.amazonaws.com/visit'
      Leave as '' to disable tracking. */
-  var VISIT_URL = '';
+  var VISIT_URL = 'https://pj1i50nic2.execute-api.ca-central-1.amazonaws.com/visit';
   if (!VISIT_URL) return;
   /* keepalive: true ensures the request completes even if the user
      navigates away immediately after the page loads. */
@@ -316,7 +316,7 @@ document.querySelectorAll('.skill-fill').forEach(function (el) {
   /* Replace with your API Gateway endpoint once deployed.
      e.g. 'https://abc123.execute-api.ca-central-1.amazonaws.com/prod/metrics'
      Leave as '' to display demo data. */
-  var API_URL = '';
+  var API_URL = 'https://pj1i50nic2.execute-api.ca-central-1.amazonaws.com/metrics';
 
   var elLoad    = document.getElementById('tw-loading');
   var elData    = document.getElementById('tw-data');
