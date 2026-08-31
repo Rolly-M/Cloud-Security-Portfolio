@@ -1123,6 +1123,28 @@ footer {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ── Metrics + Telemetry side-by-side layout ─────────────────── */
+.metrics-telemetry-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  align-items: start;
+}
+.metrics-left .metrics-hd   { text-align: left; margin-bottom: 40px; }
+.metrics-left .metrics-title { justify-content: flex-start; }
+.metrics-left .metrics-desc  { text-align: left; margin: 0; max-width: 100%; }
+.metrics-left .metrics-grid  { grid-template-columns: repeat(3, 1fr); }
+.metrics-right .telemetry-widget { margin: 0; }
+/* 2-col stat grid in the narrower right column */
+.metrics-right .tw-stats     { grid-template-columns: repeat(2, 1fr); }
+
+@media (max-width: 940px) {
+  .metrics-telemetry-wrap    { grid-template-columns: 1fr; gap: 48px; }
+  .metrics-left .metrics-hd  { text-align: center; }
+  .metrics-left .metrics-title { justify-content: center; }
+  .metrics-left .metrics-desc  { text-align: center; margin: 0 auto; max-width: 520px; }
+}
+
 /* ── Live Telemetry Widget ───────────────────────────────────── */
 .telemetry-widget {
   margin: 44px 0 60px;
@@ -1369,6 +1391,7 @@ footer {
   .footer-inner { flex-direction: column; text-align: center; }
   .metrics-grid { grid-template-columns: repeat(2, 1fr); }
   .metrics-grid .metric-card:nth-child(5) { grid-column: span 2; }
+  .metrics-left .metrics-grid { grid-template-columns: repeat(2, 1fr); }
   .skill-matrix { grid-template-columns: 1fr; }
   .skill-name { flex: 0 0 120px; }
   .contact-card { grid-template-columns: 1fr; }
@@ -1386,5 +1409,6 @@ footer {
   .metrics-grid .metric-card:nth-child(5) { grid-column: auto; }
   .mc-num { font-size: 44px; }
   .tw-stats { grid-template-columns: 1fr; }
+  .metrics-right .tw-stats { grid-template-columns: 1fr; }
   .tws-num  { font-size: 24px; }
 }
