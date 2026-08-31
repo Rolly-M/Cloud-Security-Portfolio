@@ -291,3 +291,124 @@ var barObs = new IntersectionObserver(function (entries) {
 document.querySelectorAll('.skill-fill').forEach(function (el) {
   barObs.observe(el);
 });
+
+/* ── Live AWS Telemetry Widget ───────────────────────────────── */
+(function () {
+  /* Replace with your API Gateway endpoint once deployed.
+     e.g. 'https://abc123.execute-api.ca-central-1.amazonaws.com/prod/metrics'
+     Leave as '' to display demo data. */
+  var API_URL = '';
+
+  var elLoad    = document.getElementById('tw-loading');
+  var elData    = document.getElementById('tw-data');
+  var elErr     = document.getElementById('tw-error');
+  var elUpdated = document.getElementById('tw-updated');
+  var elTotal   = document.getElementById('tw-total');
+  var elUnique  = document.getElementById('tw-unique');
+  var elReq24   = document.getElementById('tw-req24');
+  var elLatency = document.getElementById('tw-latency');
+  var elSuccess = document.getElementById('tw-success');
+  var elErrors  = document.getElementById('tw-errors');
+  var elChart   = document.getElementById('tw-chart');
+  var elChartX  = document.getElementById('tw-chart-x');
+
+  if (!elLoad) return;
+
+  var DEMO = {
+    total_visits:    935,
+    unique_visitors: 401,
+    requests_24h:    3,
+    avg_latency_ms:  837.1,
+    success_rate:    100.0,
+    errors_24h:      0,
+    hourly_requests: [
+      0,0,0,0,1,0,0,0,0,0,0,1,
+      0,0,0,0,0,0,0,0,1,0,0,0
+    ],
+    updated_at: null
+  };
+
+  function fmt(n, decimals, suffix) {
+    if (n == null) return '—';
+    var v = decimals != null ? n.toFixed(decimals) : Math.round(n).toLocaleString();
+    return suffix ? v + suffix : v;
+  }
+
+  function renderChart(data) {
+    if (!elChart || !data.length) return;
+    var W = 600, H = 80, padT = 6, padB = 4;
+    var aH  = H - padT - padB;
+    var max = Math.max.apply(null, data) || 1;
+    var len = data.length;
+
+    var pts = data.map(function (v, i) {
+      var x = (i / Math.max(len - 1, 1)) * W;
+      var y = padT + aH - (v / max) * aH;
+      return x.toFixed(1) + ',' + y.toFixed(1);
+    });
+
+    var base = (padT + aH).toFixed(1);
+    var fill = '0,' + base + ' ' + pts.join(' ') + ' ' + W + ',' + base;
+
+    var gridLines = '';
+    for (var g = 1; g <= 3; g++) {
+      var gy = (padT + (aH / 4) * g).toFixed(1);
+      gridLines += '<line x1="0" y1="' + gy + '" x2="' + W + '" y2="' + gy +
+                   '" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>';
+    }
+
+    elChart.innerHTML =
+      '<defs>' +
+        '<linearGradient id="twG" x1="0" y1="0" x2="0" y2="1">' +
+          '<stop offset="0%"   stop-color="rgba(0,210,255,0.28)"/>' +
+          '<stop offset="100%" stop-color="rgba(0,210,255,0)"/>' +
+        '</linearGradient>' +
+      '</defs>' +
+      gridLines +
+      '<polygon points="' + fill + '" fill="url(#twG)"/>' +
+      '<polyline points="' + pts.join(' ') + '" fill="none" stroke="#00d2ff"' +
+      ' stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+
+    if (elChartX) {
+      var labels = data.map(function (_, i) {
+        if (i === 0)         return '24 h ago';
+        if (i === Math.round((len - 1) / 2)) return '12 h ago';
+        if (i === len - 1)  return 'now';
+        return '';
+      });
+      elChartX.innerHTML = labels.map(function (l) {
+        return '<span>' + l + '</span>';
+      }).join('');
+    }
+  }
+
+  function populate(d) {
+    elLoad.hidden = true;
+    elData.hidden = false;
+
+    elUpdated.textContent = d.updated_at
+      ? 'updated ' + new Date(d.updated_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      : 'demo data';
+
+    elTotal.textContent   = fmt(d.total_visits);
+    elUnique.textContent  = fmt(d.unique_visitors);
+    elReq24.textContent   = fmt(d.requests_24h);
+    elLatency.textContent = fmt(d.avg_latency_ms, 1, ' ms');
+    elSuccess.textContent = fmt(d.success_rate,   1, '%');
+    elErrors.textContent  = fmt(d.errors_24h);
+
+    if (Array.isArray(d.hourly_requests)) renderChart(d.hourly_requests);
+  }
+
+  function load() {
+    if (!API_URL) { populate(DEMO); return; }
+
+    fetch(API_URL)
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (d) { elErr.hidden = true; populate(d); })
+      .catch(function ()  { elLoad.hidden = true; elErr.hidden = false; populate(DEMO); });
+  }
+
+  load();
+  if (API_URL) setInterval(load, 30000);
+})();

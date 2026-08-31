@@ -66,6 +66,122 @@
           </div>
         </div>
 
+        <!-- ── Live AWS Telemetry Widget ──────────────────────── -->
+        <div class="telemetry-widget fade-in d1" id="telemetry-widget">
+
+          <div class="tw-header">
+            <div class="tw-live-badge">
+              <span class="tw-live-dot"></span>
+              LIVE
+            </div>
+            <div class="tw-meta">
+              <span class="tw-title">This site's own AWS telemetry</span>
+              <span class="tw-arch">
+                CloudFront → API Gateway → Lambda → DynamoDB
+                <span class="tw-arch-sep">·</span>
+                metrics: Amazon CloudWatch
+              </span>
+            </div>
+            <div class="tw-updated" id="tw-updated">updated —</div>
+          </div>
+
+          <div class="tw-body">
+            <div class="tw-loading" id="tw-loading">
+              <span class="tw-spinner"></span>Fetching live metrics…
+            </div>
+
+            <div id="tw-data" hidden>
+              <div class="tw-stats">
+
+                <div class="tw-stat tws-cyan">
+                  <svg class="tws-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+                  </svg>
+                  <div class="tws-num" id="tw-total">—</div>
+                  <div class="tws-label">Total Visits</div>
+                </div>
+
+                <div class="tw-stat tws-green">
+                  <svg class="tws-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                  <div class="tws-num" id="tw-unique">—</div>
+                  <div class="tws-label">Unique Visitors</div>
+                </div>
+
+                <div class="tw-stat tws-orange">
+                  <svg class="tws-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                  </svg>
+                  <div class="tws-num" id="tw-req24">—</div>
+                  <div class="tws-label">Requests / 24 h</div>
+                </div>
+
+                <div class="tw-stat tws-purple">
+                  <svg class="tws-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                  <div class="tws-num" id="tw-latency">—</div>
+                  <div class="tws-label">Avg Latency</div>
+                </div>
+
+                <div class="tw-stat tws-green2">
+                  <svg class="tws-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <div class="tws-num" id="tw-success">—</div>
+                  <div class="tws-label">Success Rate</div>
+                </div>
+
+                <div class="tw-stat tws-red">
+                  <svg class="tws-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="15" y1="9" x2="9" y2="15"/>
+                    <line x1="9" y1="9" x2="15" y2="15"/>
+                  </svg>
+                  <div class="tws-num" id="tw-errors">—</div>
+                  <div class="tws-label">Errors / 24 h</div>
+                </div>
+
+              </div><!-- /tw-stats -->
+
+              <div class="tw-chart-section">
+                <div class="tw-chart-label">Requests / hour — last 24 h</div>
+                <div class="tw-chart-wrap">
+                  <svg id="tw-chart" class="tw-chart" viewBox="0 0 600 80"
+                       preserveAspectRatio="none" aria-hidden="true"></svg>
+                  <div class="tw-chart-x" id="tw-chart-x"></div>
+                </div>
+              </div>
+            </div><!-- /tw-data -->
+
+            <div id="tw-error" class="tw-err" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              Could not reach telemetry API — showing demo data
+            </div>
+          </div><!-- /tw-body -->
+
+          <div class="tw-footer">
+            <p class="tw-note">
+              Not a mock-up — a read-only Lambda merges DynamoDB visit totals with CloudWatch
+              metrics for the visitor-counter Lambda behind this page.
+            </p>
+            <a href="https://github.com/Rolly-M/Cloud-Security-Portfolio"
+               target="_blank" rel="noopener noreferrer" class="tw-src-link">
+              source on GitHub ↗
+            </a>
+          </div>
+
+        </div><!-- /telemetry-widget -->
+
         <!-- Cards -->
         <div class="projects-grid">
 
