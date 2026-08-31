@@ -178,6 +178,67 @@ resource "aws_cloudwatch_log_group" "metrics_reader" {
   tags              = local.tags
 }
 
+# ── IAM: Activity Tracker ────────────────────────────────────────────────────
+resource "aws_iam_role" "activity_tracker" {
+  name               = "${var.project_name}-activity-tracker"
+  assume_role_policy = data.aws_iam_policy_document.lambda_assume.json
+  tags               = local.tags
+}
+
+data "aws_iam_policy_document" "activity_tracker" {
+  statement {
+    sid     = "DynamoDB"
+    actions = ["dynamodb:PutItem", "dynamodb:UpdateItem"]
+    resources = [aws_dynamodb_table.visits.arn]
+  }
+  statement {
+    sid     = "Logs"
+    actions = ["logs:CreateLogGroup", "logs:CreateLogStream", "logs:PutLogEvents"]
+    resources = [
+      "arn:aws:logs:${var.aws_region}:*:log-group:/aws/lambda/${var.project_name}-activity-tracker:*"
+    ]
+  }
+}
+
+resource "aws_iam_role_policy" "activity_tracker" {
+  name   = "activity-tracker-policy"
+  role   = aws_iam_role.activity_tracker.id
+  policy = data.aws_iam_policy_document.activity_tracker.json
+}
+
+# ── Lambda: Activity Tracker ──────────────────────────────────────────────────
+data "archive_file" "activity_tracker" {
+  type        = "zip"
+  source_file = "${path.module}/lambda/activity_tracker/handler.py"
+  output_path = "${path.module}/.build/activity_tracker.zip"
+}
+
+resource "aws_lambda_function" "activity_tracker" {
+  function_name    = "${var.project_name}-activity-tracker"
+  role             = aws_iam_role.activity_tracker.arn
+  runtime          = "python3.12"
+  handler          = "handler.handler"
+  filename         = data.archive_file.activity_tracker.output_path
+  source_code_hash = data.archive_file.activity_tracker.output_base64sha256
+  timeout          = 10
+  memory_size      = 128
+
+  environment {
+    variables = {
+      TABLE_NAME           = aws_dynamodb_table.visits.name
+      ACTIVITY_TTL_SECONDS = "2592000"
+    }
+  }
+
+  tags = local.tags
+}
+
+resource "aws_cloudwatch_log_group" "activity_tracker" {
+  name              = "/aws/lambda/${aws_lambda_function.activity_tracker.function_name}"
+  retention_in_days = 14
+  tags              = local.tags
+}
+
 # ── API Gateway HTTP API ──────────────────────────────────────────────────────
 resource "aws_apigatewayv2_api" "portfolio" {
   name          = "${var.project_name}-api"
@@ -251,6 +312,28 @@ resource "aws_lambda_permission" "metrics_reader" {
   statement_id  = "AllowAPIGateway"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.metrics_reader.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_apigatewayv2_api.portfolio.execution_arn}/*/*"
+}
+
+# ── Route: POST /activity → activity_tracker ─────────────────────────────────
+resource "aws_apigatewayv2_integration" "activity_tracker" {
+  api_id                 = aws_apigatewayv2_api.portfolio.id
+  integration_type       = "AWS_PROXY"
+  integration_uri        = aws_lambda_function.activity_tracker.invoke_arn
+  payload_format_version = "2.0"
+}
+
+resource "aws_apigatewayv2_route" "post_activity" {
+  api_id    = aws_apigatewayv2_api.portfolio.id
+  route_key = "POST /activity"
+  target    = "integrations/${aws_apigatewayv2_integration.activity_tracker.id}"
+}
+
+resource "aws_lambda_permission" "activity_tracker" {
+  statement_id  = "AllowAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.activity_tracker.function_name
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_apigatewayv2_api.portfolio.execution_arn}/*/*"
 }

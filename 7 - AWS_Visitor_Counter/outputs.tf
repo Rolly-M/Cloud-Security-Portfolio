@@ -1,5 +1,5 @@
 output "api_base_url" {
-  description = "Base URL of the HTTP API — append /visit or /metrics"
+  description = "Base URL of the HTTP API — append /visit, /metrics, or /activity"
   value       = aws_apigatewayv2_stage.default.invoke_url
 }
 
@@ -11,6 +11,11 @@ output "metrics_endpoint" {
 output "visit_endpoint" {
   description = "Paste this into portfolio/js/main.js → VISIT_URL"
   value       = "${aws_apigatewayv2_stage.default.invoke_url}/visit"
+}
+
+output "activity_endpoint" {
+  description = "Paste this into portfolio/js/main.js → ACTIVITY_URL"
+  value       = "${aws_apigatewayv2_stage.default.invoke_url}/activity"
 }
 
 output "dynamodb_table_name" {

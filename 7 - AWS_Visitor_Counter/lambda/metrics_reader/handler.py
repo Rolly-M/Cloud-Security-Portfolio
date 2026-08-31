@@ -33,9 +33,12 @@ def handler(event, context):
     start = end - timedelta(hours=24)
 
     # ── DynamoDB totals ───────────────────────────────────────────
-    row    = table.get_item(Key={'pk': 'totals'}).get('Item', {})
-    total  = int(row.get('total_visits',    0))
-    unique = int(row.get('unique_visitors', 0))
+    row       = table.get_item(Key={'pk': 'totals'}).get('Item', {})
+    total     = int(row.get('total_visits',    0))
+    unique    = int(row.get('unique_visitors', 0))
+    dur_ms    = int(row.get('total_duration_ms', 0))
+    dur_count = int(row.get('duration_count',    0))
+    avg_dur_s = round(dur_ms / dur_count / 1000, 1) if dur_count else None
 
     # ── CloudWatch: 24-hour aggregates ───────────────────────────
     req24   = int(_cw_stat('Invocations', 'Sum',     start, end, 86400))
@@ -63,6 +66,7 @@ def handler(event, context):
     body = {
         'total_visits':    total,
         'unique_visitors': unique,
+        'avg_duration_s':  avg_dur_s,
         'requests_24h':    req24,
         'avg_latency_ms':  latency,
         'success_rate':    success,

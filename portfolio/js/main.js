@@ -336,24 +336,25 @@ document.querySelectorAll('.skill-fill').forEach(function (el) {
      Leave as '' to display demo data. */
   var API_URL = 'https://pj1i50nic2.execute-api.ca-central-1.amazonaws.com/metrics';
 
-  var elLoad    = document.getElementById('tw-loading');
-  var elData    = document.getElementById('tw-data');
-  var elErr     = document.getElementById('tw-error');
-  var elUpdated = document.getElementById('tw-updated');
-  var elTotal   = document.getElementById('tw-total');
-  var elUnique  = document.getElementById('tw-unique');
-  var elReq24   = document.getElementById('tw-req24');
-  var elLatency = document.getElementById('tw-latency');
-  var elSuccess = document.getElementById('tw-success');
-  var elErrors  = document.getElementById('tw-errors');
-  var elChart   = document.getElementById('tw-chart');
-  var elChartX  = document.getElementById('tw-chart-x');
+  var elLoad     = document.getElementById('tw-loading');
+  var elData     = document.getElementById('tw-data');
+  var elErr      = document.getElementById('tw-error');
+  var elUpdated  = document.getElementById('tw-updated');
+  var elTotal    = document.getElementById('tw-total');
+  var elUnique   = document.getElementById('tw-unique');
+  var elDuration = document.getElementById('tw-duration');
+  var elLatency  = document.getElementById('tw-latency');
+  var elSuccess  = document.getElementById('tw-success');
+  var elErrors   = document.getElementById('tw-errors');
+  var elChart    = document.getElementById('tw-chart');
+  var elChartX   = document.getElementById('tw-chart-x');
 
   if (!elLoad) return;
 
   var DEMO = {
     total_visits:    935,
     unique_visitors: 401,
+    avg_duration_s:  127,
     requests_24h:    3,
     avg_latency_ms:  837.1,
     success_rate:    100.0,
@@ -369,6 +370,12 @@ document.querySelectorAll('.skill-fill').forEach(function (el) {
     if (n == null) return '—';
     var v = decimals != null ? n.toFixed(decimals) : Math.round(n).toLocaleString();
     return suffix ? v + suffix : v;
+  }
+
+  function fmtDuration(s) {
+    if (s == null) return '—';
+    if (s < 60) return Math.round(s) + ' s';
+    return (s / 60).toFixed(1) + ' min';
   }
 
   function renderChart(data) {
@@ -427,12 +434,12 @@ document.querySelectorAll('.skill-fill').forEach(function (el) {
       ? 'updated ' + new Date(d.updated_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       : 'demo data';
 
-    elTotal.textContent   = fmt(d.total_visits);
-    elUnique.textContent  = fmt(d.unique_visitors);
-    elReq24.textContent   = fmt(d.requests_24h);
-    elLatency.textContent = fmt(d.avg_latency_ms, 1, ' ms');
-    elSuccess.textContent = fmt(d.success_rate,   1, '%');
-    elErrors.textContent  = fmt(d.errors_24h);
+    elTotal.textContent    = fmt(d.total_visits);
+    elUnique.textContent   = fmt(d.unique_visitors);
+    if (elDuration) elDuration.textContent = fmtDuration(d.avg_duration_s);
+    elLatency.textContent  = fmt(d.avg_latency_ms, 1, ' ms');
+    elSuccess.textContent  = fmt(d.success_rate,   1, '%');
+    elErrors.textContent   = fmt(d.errors_24h);
 
     if (Array.isArray(d.hourly_requests)) renderChart(d.hourly_requests);
   }
@@ -448,4 +455,80 @@ document.querySelectorAll('.skill-fill').forEach(function (el) {
 
   load();
   if (API_URL) setInterval(load, 30000);
+})();
+
+/* ── Session duration + behaviour tracking ───────────────────────────────── */
+(function () {
+  var ACTIVITY_URL = 'https://pj1i50nic2.execute-api.ca-central-1.amazonaws.com/activity';
+  if (!ACTIVITY_URL) return;
+
+  var sessionStart = Date.now();
+
+  function getVid() {
+    try { return localStorage.getItem('rm_vid'); } catch (e) { return null; }
+  }
+
+  /* Send session duration when the user leaves or hides the tab.
+     sendBeacon is fire-and-forget and survives page navigation. */
+  function sendDuration() {
+    var dur = Date.now() - sessionStart;
+    if (dur < 3000) return; // ignore sub-3-second bounces
+    var payload = JSON.stringify({
+      type: 'duration',
+      visitor_id: getVid(),
+      duration_ms: dur,
+      page: window.location.pathname,
+    });
+    var sent = false;
+    if (navigator.sendBeacon) {
+      sent = navigator.sendBeacon(
+        ACTIVITY_URL,
+        new Blob([payload], { type: 'application/json' })
+      );
+    }
+    if (!sent) {
+      fetch(ACTIVITY_URL, {
+        method: 'POST', keepalive: true,
+        headers: { 'Content-Type': 'application/json' },
+        body: payload,
+      }).catch(function () {});
+    }
+  }
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') sendDuration();
+  });
+  window.addEventListener('pagehide', sendDuration, { passive: true });
+
+  /* Click tracking — event delegation; debounced to one event per 400 ms. */
+  var lastClick = 0;
+  document.addEventListener('click', function (e) {
+    var now = Date.now();
+    if (now - lastClick < 400) return;
+    lastClick = now;
+
+    var target = e.target.closest('a[href], button, [data-track]');
+    if (!target) return;
+
+    var label = (
+      target.dataset.track ||
+      target.getAttribute('aria-label') ||
+      target.textContent.trim().slice(0, 60)
+    ) || 'unknown';
+
+    var href = (target.tagName === 'A' ? (target.href || '') : '').slice(0, 200);
+
+    fetch(ACTIVITY_URL, {
+      method: 'POST',
+      keepalive: true,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'click',
+        visitor_id: getVid(),
+        element: label,
+        href: href,
+        page: window.location.pathname,
+      }),
+    }).catch(function () {});
+  }, { passive: true });
 })();
