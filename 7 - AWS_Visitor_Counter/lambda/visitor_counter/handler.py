@@ -1,6 +1,7 @@
 import json
 import os
 import hashlib
+import re
 import time
 
 import boto3
@@ -12,15 +13,30 @@ TTL_SECONDS = int(os.environ.get('VISITOR_TTL_SECONDS', '86400'))
 ddb   = boto3.resource('dynamodb')
 table = ddb.Table(TABLE_NAME)
 
+# Accepts UUIDs and any alphanumeric/hyphen/underscore string 8–64 chars.
+_VID_RE = re.compile(r'^[a-zA-Z0-9_\-]{8,64}$')
+
 
 def handler(event, context):
-    # Derive a privacy-preserving visitor token from the source IP.
-    # The hash is truncated to 16 hex chars — collision risk is negligible
-    # at portfolio-level traffic and we never store raw IPs.
-    ip = (event.get('requestContext', {})
-               .get('http', {})
-               .get('sourceIp', 'unknown'))
-    visitor_key = 'visitor#' + hashlib.sha256(ip.encode()).hexdigest()[:16]
+    # Prefer the client-supplied visitor_id (localStorage UUID) so that
+    # each browser is counted once regardless of IP changes.  Fall back to
+    # a hashed source IP for clients where localStorage is unavailable.
+    body = {}
+    if event.get('body'):
+        try:
+            body = json.loads(event['body'])
+        except Exception:
+            pass
+
+    client_id = str(body.get('visitor_id', '')).strip()
+    if client_id and _VID_RE.match(client_id):
+        visitor_key = 'vc#' + hashlib.sha256(client_id.encode()).hexdigest()[:32]
+    else:
+        ip = (event.get('requestContext', {})
+                   .get('http', {})
+                   .get('sourceIp', 'unknown'))
+        visitor_key = 'vi#' + hashlib.sha256(ip.encode()).hexdigest()[:16]
+
     expires_at  = int(time.time()) + TTL_SECONDS
 
     is_new_visitor = False

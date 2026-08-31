@@ -301,14 +301,32 @@ document.querySelectorAll('.skill-fill').forEach(function (el) {
 
 /* ── Page-view ping ──────────────────────────────────────────── */
 (function () {
-  /* Replace with the visit_endpoint output from terraform apply.
-     e.g. 'https://abc123.execute-api.ca-central-1.amazonaws.com/visit'
-     Leave as '' to disable tracking. */
   var VISIT_URL = 'https://pj1i50nic2.execute-api.ca-central-1.amazonaws.com/visit';
   if (!VISIT_URL) return;
-  /* keepalive: true ensures the request completes even if the user
-     navigates away immediately after the page loads. */
-  fetch(VISIT_URL, { method: 'POST', keepalive: true }).catch(function () {});
+
+  /* Retrieve or create a stable browser-local visitor ID.
+     localStorage survives refreshes and tab closes, so the same
+     browser always sends the same ID — counting unique browsers,
+     not unique IPs (which change with IPv6/proxy/mobile). */
+  var vid = null;
+  try {
+    vid = localStorage.getItem('rm_vid');
+    if (!vid) {
+      vid = (crypto.randomUUID ? crypto.randomUUID() :
+        'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+          var r = Math.random() * 16 | 0;
+          return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        }));
+      localStorage.setItem('rm_vid', vid);
+    }
+  } catch (e) { /* storage blocked (private mode) — falls back to IP on server */ }
+
+  fetch(VISIT_URL, {
+    method: 'POST',
+    keepalive: true,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ visitor_id: vid }),
+  }).catch(function () {});
 })();
 
 /* ── Live AWS Telemetry Widget ───────────────────────────────── */
