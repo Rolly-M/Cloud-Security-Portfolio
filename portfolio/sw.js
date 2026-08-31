@@ -1,26 +1,40 @@
 'use strict';
 
-const CACHE = 'rm-portfolio-v1';
+const CACHE = 'rm-portfolio-v2';
 
-/* Install — cache assets, then wait for existing SW to retire */
+const PRECACHE = [
+  '/', '/index.html', '/about.html', '/projects.html', '/contact.html',
+  '/css/style.css', '/js/main.js',
+];
+
+/* Install — pre-cache core assets, then skip the waiting phase immediately.
+   skipWaiting() here (not in activate) means the new SW activates as soon
+   as the install completes, without waiting for existing tabs to close. */
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll([
-    '/', '/index.html', '/about.html', '/projects.html', '/contact.html',
-    '/css/style.css', '/js/main.js'
-  ])));
+  e.waitUntil(
+    caches.open(CACHE)
+      .then(c => c.addAll(PRECACHE))
+      .then(() => self.skipWaiting())
+  );
 });
 
-/* Activate — delete old caches */
+/* Activate — delete every cache that isn't the current version, then
+   claim all open clients so they are immediately controlled by this SW.
+   The page-side controllerchange listener will trigger a reload only when
+   a previous SW was already controlling the tab (i.e. this is an update,
+   not a first install). */
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys()
       .then(keys => Promise.all(
         keys.filter(k => k !== CACHE).map(k => caches.delete(k))
       ))
+      .then(() => self.clients.claim())
   );
 });
 
-/* Fetch — network-first, cache as offline fallback */
+/* Fetch — network-first for same-origin GET requests.
+   Fresh content is always preferred; cache is the offline fallback only. */
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);

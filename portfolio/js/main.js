@@ -1,8 +1,15 @@
 'use strict';
 
-/* ── Service Worker — auto-clear cache on deploy ─────────────── */
+/* ── Service Worker — auto-update on deploy ──────────────────── */
 if ('serviceWorker' in navigator) {
+  /* Capture BEFORE register() so we know if a SW was already active.
+     controllerchange fires on both first install and updates; the
+     hadController guard makes the reload happen only on updates. */
+  var hadController = !!navigator.serviceWorker.controller;
   navigator.serviceWorker.register('/sw.js');
+  navigator.serviceWorker.addEventListener('controllerchange', function () {
+    if (hadController) window.location.reload();
+  });
 }
 
 /* ── Flying Star Canvas ─────────────────────────────────────── */
